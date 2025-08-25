@@ -1,0 +1,1022 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PMxFootball - Redefining Football Performance</title>
+
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%2300bcd4'/><text x='50' y='58' font-size='52' text-anchor='middle' fill='white' font-family='Arial'>⚽</text></svg>">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Tailwind (CDN) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            heading: ['Montserrat', 'sans-serif'],
+            body: ['Open Sans', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#ecfeff', 100: '#cffafe', 200: '#a5f3fc', 300: '#67e8f9', 400: '#22d3ee', 500: '#06b6d4', 600: '#0891b2', 700: '#0e7490', 800: '#155e75', 900: '#164e63'
+            }
+          },
+          boxShadow: {
+            soft: '0 10px 30px rgba(0,0,0,0.08)'
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Bootstrap (minimal usage for grid/utilities) -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+  <!-- Icons -->
+  <script src="https://unpkg.com/lucide@0.447.0/dist/umd/lucide.min.js"></script>
+
+  <!-- React + ReactDOM + Babel -->
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <!-- Chart.js (for charts) -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+
+  <style>
+    :root { color-scheme: light dark; }
+    html, body { height: 100%; }
+    .glass { backdrop-filter: blur(8px); }
+    .card-grad { background: linear-gradient(135deg, rgba(6,182,212,.10), rgba(14,116,144,.10)); }
+    .light .card-grad { background: linear-gradient(135deg, rgba(6,182,212,.06), rgba(14,116,144,.06)); }
+    
+    /* Custom styles for new content */
+    .hero-gradient {
+      background: linear-gradient(135deg, #06b6d4 0%, #0e7490 100%);
+    }
+    .competition-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+    .competition-card {
+      transition: all 0.3s ease;
+    }
+    .competition-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    }
+    .section-heading {
+      position: relative;
+      padding-bottom: 1rem;
+      margin-bottom: 2rem;
+    }
+    .section-heading:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 60px;
+      height: 4px;
+      background: #06b6d4;
+      border-radius: 2px;
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-slate-950 text-slate-100 dark:bg-slate-950 dark:text-slate-100 light:bg-white light:text-slate-900 transition-colors font-body">
+  <div id="root"></div>
+
+  <script type="text/babel">
+    const { useState, useMemo, useEffect, useRef } = React;
+
+    // ---------- Utilities ----------
+    const saveLS = (k,v) => localStorage.setItem(k, JSON.stringify(v));
+    const loadLS = (k, d) => { try { return JSON.parse(localStorage.getItem(k)) ?? d; } catch { return d; } };
+
+    // Hide actual PM formula from UI; implement as a black box
+    function computePM(matchStatsForTeam) {
+      // Example hidden logic (placeholder). You will replace weights, but UI never shows them.
+      // PM ∈ R, higher is better
+      const { goals=0, shots=0, shotsOnTarget=0, xg=0, poss=50, passes=0, fouls=0, yellows=0, reds=0 } = matchStatsForTeam || {};
+      const pm = (
+        goals * 4.2 +
+        shotsOnTarget * 0.9 +
+        shots * 0.15 +
+        xg * 1.3 +
+        (poss-50) * 0.04 +
+        passes * 0.005 -
+        fouls * 0.2 -
+        yellows * 0.4 -
+        reds * 1.2
+      );
+      return Number(pm.toFixed(2));
+    }
+
+    function clsx(...xs){ return xs.filter(Boolean).join(' '); }
+
+    // ---------- Demo Data (You can clear/replace via Admin) ----------
+    const COMPETITIONS = [
+      { key:'epl', name:'Premier League', season:'2024/25', nation:'England', type:'league', games:380, logo: '🏴󠁧󠁢󠁥󠁮󠁧󠁿' },
+      { key:'facup', name:'FA Cup', season:'2024/25', nation:'England', type:'cup', games:31, logo: '🏆' },
+      { key:'carabao', name:'Carabao Cup', season:'2024/25', nation:'England', type:'cup', games:31, logo: '🥛' },
+      { key:'cs', name:'Community Shield', season:'2024/25', nation:'England', type:'cup', games:1, logo: '🛡️' },
+
+      { key:'laliga', name:'La Liga', season:'2024/25', nation:'Spain', type:'league', games:380, logo: '🇪🇸' },
+      { key:'cdr', name:'Copa del Rey', season:'2024/25', nation:'Spain', type:'cup', games:31, logo: '🏆' },
+      { key:'ss', name:'Spanish Supercup', season:'2024/25', nation:'Spain', type:'cup', games:3, logo: '🛡️' },
+
+      { key:'seriea', name:'Serie A', season:'2024/25', nation:'Italy', type:'league', games:380, logo: '🇮🇹' },
+      { key:'coppa', name:'Coppa Italia', season:'2024/25', nation:'Italy', type:'cup', games:15, logo: '🏆' },
+      { key:'is', name:'Italian Supercup', season:'2024/25', nation:'Italy', type:'cup', games:3, logo: '🛡️' },
+
+      { key:'bundes', name:'Bundesliga', season:'2024/25', nation:'Germany', type:'league', games:306, logo: '🇩🇪' },
+      { key:'dfb', name:'DFB Pokal', season:'2024/25', nation:'Germany', type:'cup', games:31, logo: '🏆' },
+      { key:'gs', name:'German Supercup', season:'2024/25', nation:'Germany', type:'cup', games:1, logo: '🛡️' },
+
+      { key:'ligue1', name:'Ligue 1', season:'2024/25', nation:'France', type:'league', games:306, logo: '🇫🇷' },
+      { key:'cdf', name:'Coupe de France', season:'2024/25', nation:'France', type:'cup', games:31, logo: '🏆' },
+      { key:'fs', name:'French Supercup', season:'2024/25', nation:'France', type:'cup', games:1, logo: '🛡️' },
+
+      { key:'ucl', name:'UEFA Champions League', season:'2024/25', nation:'UEFA', type:'cup', games:167, logo: '⭐' },
+      { key:'uel', name:'UEFA Europa League', season:'2024/25', nation:'UEFA', type:'cup', games:167, logo: '🌕' },
+      { key:'usup', name:'UEFA Super Cup', season:'2024/25', nation:'UEFA', type:'cup', games:1, logo: '🛡️' },
+    ];
+
+    const DEFAULT_DB = {
+      teams: [
+        { team_id: 1, name: 'Manchester City', competition: 'epl', coeff: 100 },
+        { team_id: 2, name: 'Arsenal', competition: 'epl', coeff: 95 },
+        { team_id: 3, name: 'Liverpool', competition: 'epl', coeff: 92 },
+      ],
+      fixtures: [
+        { fixture_id: 1, date: '2024-08-12', comp: 'epl', home_id:1, away_id:2, score:'2-1' },
+        { fixture_id: 2, date: '2024-08-19', comp: 'epl', home_id:3, away_id:1, score:'1-1' },
+      ],
+      stats: {
+        // Per fixture, per team
+        // key: `${fixture_id}_${team_id}`
+        '1_1': { goals:2, shots:15, shotsOnTarget:7, xg:1.8, poss:56, passes:560, fouls:10, yellows:1, reds:0 },
+        '1_2': { goals:1, shots:10, shotsOnTarget:4, xg:1.2, poss:44, passes:480, fouls:12, yellows:2, reds:0 },
+        '2_3': { goals:1, shots:12, shotsOnTarget:5, xg:1.4, poss:54, passes:520, fouls:8,  yellows:1, reds:0 },
+        '2_1': { goals:1, shots:9,  shotsOnTarget:3, xg:0.9, poss:46, passes:510, fouls:11, yellows:1, reds:0 },
+      },
+      users: [{ username: 'admin', password: 'pm-strong-pass' }]
+    };
+
+    function initDB(){
+      if(!localStorage.getItem('pm_db')) saveLS('pm_db', DEFAULT_DB);
+      if(!localStorage.getItem('pm_theme')) localStorage.setItem('pm_theme','dark');
+      if(!localStorage.getItem('pm_activeSeason')) localStorage.setItem('pm_activeSeason','2024/25');
+    }
+
+    // ---------- Charts ----------
+    function useChart(canvasRef, cfg){
+      useEffect(() => {
+        if(!canvasRef.current) return;
+        const chart = new Chart(canvasRef.current, cfg);
+        return () => chart.destroy();
+      }, [canvasRef, JSON.stringify(cfg)]);
+    }
+
+    const Card = ({title, children, className, extra}) => (
+      <div className={clsx('rounded-2xl p-5 shadow-soft card-grad border border-slate-800/40 light:border-slate-200', className)}>
+        <div className="flex items-center justify-between mb-3">
+          <h3 className="text-lg font-semibold font-heading">{title}</h3>
+          {extra}
+        </div>
+        <div>{children}</div>
+      </div>
+    );
+
+    const Stat = ({label, value}) => (
+      <div className="text-center">
+        <div className="text-2xl font-bold font-heading">{value}</div>
+        <div className="text-xs opacity-80">{label}</div>
+      </div>
+    );
+
+    // ---------- Top Navigation ----------
+    function NavBar({ theme, setTheme, route, setRoute, isAuthed, setRouteSeason }){
+      useEffect(()=>{ lucide.createIcons(); }, [theme, route, isAuthed]);
+      const Item = ({label, to}) => (
+        <button onClick={()=>setRoute(to)} className={clsx('px-3 py-2 rounded-xl hover:bg-slate-800/50 light:hover:bg-slate-100 transition font-body', route===to && 'bg-slate-800/70 light:bg-slate-100 font-semibold')}>{label}</button>
+      );
+      return (
+        <header className="sticky top-0 z-40 shadow-soft bg-slate-900/80 light:bg-white/80 glass border-b border-slate-800/60 light:border-slate-200">
+          <div className="container mx-auto px-4">
+            <div className="flex items-center gap-3 py-3">
+              <div className="flex items-center gap-2 text-brand-300 light:text-brand-600">
+                <i data-lucide="football" class="w-6 h-6"></i>
+                <span className="font-bold font-heading">PMxFootball</span>
+              </div>
+              <div className="flex-1"></div>
+              <nav className="hidden md:flex gap-1">
+                <Item label="Home" to="/" />
+                <div className="relative group">
+                  <button className="px-3 py-2 rounded-xl hover:bg-slate-800/50 light:hover:bg-slate-100 transition flex items-center gap-2 font-body">
+                    2024/25
+                    <i data-lucide="chevron-down" class="w-4 h-4"></i>
+                  </button>
+                  <div className="absolute hidden group-hover:block bg-slate-900/95 light:bg-white border border-slate-700/70 light:border-slate-200 rounded-xl p-2 mt-1 w-64">
+                    {['England','Spain','Italy','Germany','France'].map(n=> (
+                      <button key={n} onClick={()=>{ setRoute('/season/2024/25'); setRouteSeason('2024/25'); }} className="block text-left w-full px-3 py-2 rounded-lg hover:bg-slate-800/50 light:hover:bg-slate-100 font-body">{n}</button>
+                    ))}
+                    <div className="px-3 pt-2 text-xs opacity-70 font-body">UEFA: UCL, UEL, Super Cup</div>
+                  </div>
+                </div>
+                <div className="relative group">
+                  <button className="px-3 py-2 rounded-xl hover:bg-slate-800/50 light:hover:bg-slate-100 transition flex items-center gap-2 font-body">
+                    2025/26
+                    <i data-lucide="chevron-down" class="w-4 h-4"></i>
+                  </button>
+                  <div className="absolute hidden group-hover:block bg-slate-900/95 light:bg-white border border-slate-700/70 light:border-slate-200 rounded-xl p-2 mt-1 w-64">
+                    {['England','Spain','Italy','Germany','France'].map(n=> (
+                      <button key={n} onClick={()=>{ setRoute('/season/2025/26'); setRouteSeason('2025/26'); }} className="block text-left w-full px-3 py-2 rounded-lg hover:bg-slate-800/50 light:hover:bg-slate-100 font-body">{n}</button>
+                    ))}
+                    <div className="px-3 pt-2 text-xs opacity-70 font-body">UEFA: UCL, UEL, Super Cup</div>
+                  </div>
+                </div>
+                <Item label="Admin" to="/admin" />
+              </nav>
+              <div className="flex items-center gap-2">
+                <button onClick={()=>{
+                  const next = theme==='dark'?'light':'dark';
+                  setTheme(next);
+                  document.documentElement.classList.remove('dark','light');
+                  document.documentElement.classList.add(next);
+                  localStorage.setItem('pm_theme', next);
+                }} className="inline-flex items-center gap-2 px-3 py-2 rounded-xl bg-slate-800 light:bg-slate-100 font-body">
+                  <i data-lucide={theme==='dark'?'moon':'sun'} class="w-4 h-4"></i>
+                  <span className="hidden sm:inline">{theme==='dark'?'Dark':'Light'}</span>
+                </button>
+                <button onClick={()=>setRoute('/admin')} className="inline-flex items-center gap-2 px-3 py-2 rounded-xl bg-brand-600 hover:bg-brand-500 font-body">
+                  <i data-lucide="lock" class="w-4 h-4"></i>
+                  <span className="hidden sm:inline">Admin</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </header>
+      );
+    }
+
+    // ---------- Pages ----------
+    function Home(){
+      return (
+        <main className="container mx-auto px-4 py-8">
+          {/* Hero Section */}
+          <section className="rounded-3xl overflow-hidden hero-gradient text-white p-8 mb-12">
+            <div className="max-w-4xl mx-auto text-center">
+              <h1 className="text-4xl md:text-5xl font-bold mb-4 font-heading">PMxFootball</h1>
+              <h2 className="text-2xl md:text-3xl font-medium mb-6 font-heading">Redefining Football Performance</h2>
+              <p className="text-lg opacity-90 mb-8">Where traditional statistics often stop at goals, possession, or shots on target, our Performance Metric (PM) Index goes further. It tells you not just what happened, but how well it happened.</p>
+              <button className="px-6 py-3 bg-white text-brand-800 rounded-xl font-semibold hover:bg-slate-100 transition font-body">
+                Explore PM Index
+              </button>
+            </div>
+          </section>
+
+          {/* About PM Section */}
+          <section className="mb-12">
+            <h2 className="text-2xl font-bold mb-6 font-heading section-heading">The PM Index Advantage</h2>
+            <div className="grid md:grid-cols-2 gap-8">
+              <div>
+                <h3 className="text-xl font-semibold mb-4 font-heading">Beyond Traditional Metrics</h3>
+                <p className="mb-4">The PM Index is built on a carefully designed mathematical model that weighs every key aspect of the game — attacking efficiency, defensive stability, creativity, possession, and overall control.</p>
+                <p className="mb-4">By combining these elements, it produces a single, clear number that reflects the true quality of a team's performance in any match.</p>
+              </div>
+              <div>
+                <h3 className="text-xl font-semibold mb-4 font-heading">Better than xG?</h3>
+                <p className="mb-4">Expected Goals (xG) has become one of the most widely used stats in modern football analysis, but it tells only part of the story.</p>
+                <p className="mb-4">xG focuses almost entirely on the attacking side of the game — the quality of chances created and taken. While this is valuable, it overlooks other crucial aspects of performance.</p>
+              </div>
+            </div>
+          </section>
+
+          {/* Competitions Grid */}
+          <section className="mb-12">
+            <h2 className="text-2xl font-bold mb-6 font-heading section-heading">Competitions Coverage</h2>
+            <div className="competition-grid">
+              {/* UEFA Competitions */}
+              <div className="competition-card rounded-2xl p-5 border border-slate-800/40 light:border-slate-200 bg-slate-900/40 light:bg-white">
+                <div className="flex items-center gap-3 mb-4">
+                  <span className="text-3xl">🇪🇺</span>
+                  <h3 className="text-xl font-semibold font-heading">UEFA Competitions</h3>
+                </div>
+                <div className="space-y-3">
+                  <div className="flex justify-between items-center p-3 rounded-xl bg-slate-800/30 light:bg-slate-100">
+                    <div className="flex items-center gap-2">
+                      <span className="text-xl">⭐</span>
+                      <span>Champions League</span>
+                    </div>
+                    <span className="text-sm opacity-70">Coming soon...</span>
+                  </div>
+                  <div className="flex justify-between items-center p-3 rounded-xl bg-slate-800/30 light:bg-slate-100">
+                    <div className="flex items-center gap-2">
+                      <span className="text-xl">🌕</span>
+                      <span>Europa League</span>
+                    </div>
+                    <span className="text-sm opacity-70">Coming soon...</span>
+                  </div>
+                  <div className="flex justify-between items-center p-3 rounded-xl bg-slate-800/30 light:bg-slate-100">
+                    <div className="flex items-center gap-2">
+                      <span className="text-xl">🛡️</span>
+                      <span>Super Cup</span>
+                    </div>
+                    <span className="text-sm opacity-70">Coming soon...</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* English Competitions */}
+              <div className="competition-card rounded-2xl p-5 border border-slate-800/40 light:border-slate-200 bg-slate-900/40 light:bg-white">
+                <div className="flex items-center gap-3 mb-4">
+                  <span className="text-3xl">🏴󠁧󠁢󠁥󠁮󠁧󠁿</span>
+                  <h3 className="text-xl font-semibold font-heading">English Competitions</h3>
+                </div>
+                <div className="space-y-3">
+                  <div className="flex justify-between items-center p-3 rounded-xl bg-slate-800/30 light:bg-slate-100">
+                    <div className="flex items-center gap-2">
+                      <span className="text-xl">🏴󠁧󠁢󠁥󠁮󠁧󠁿</span>
+                      <span>Premier League</span>
+                    </div>
+                    <span className="text-sm opacity-70">Coming soon...</span>
+                  </div>
+                  <div className="flex justify-between items-center p-3 rounded-xl bg-slate-800/30 light:bg-slate-100">
+                    <div className="flex items-center gap-2">
+                      <span className="text-xl">🏆</span>
+                      <span>FA Cup</span>
+                    </div>
+                    <span className="text-sm opacity-70">Coming soon...</span>
+                  </div>
+                  <div className="flex justify-between items-center p-3 rounded-xl bg-slate-800/30 light:bg-slate-100">
+                    <div className="flex items-center gap-2">
+                      <span className="text-xl">🥛</span>
+                      <span>Carabao Cup</span>
+                    </div>
+                    <span className="text-sm opacity-70">Coming soon...</span>
+                  </div>
+                  <div className="flex justify-between items-center p-3 rounded-xl bg-slate-800/30 light:bg-slate-100">
+                    <div className="flex items-center gap-2">
+                      <span className="text-xl">🛡️</span>
+                      <span>Community Shield</span>
+                    </div>
+                    <span className="text-sm opacity-70">Coming soon...</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Spanish Competitions */}
+              <div className="competition-card rounded-2xl p-5 border border-slate-800/40 light:border-slate-200 bg-slate-900/40 light:bg-white">
+                <div className="flex items-center gap-3 mb-4">
+                  <span className="text-3xl">🇪🇸</span>
+                  <h3 className="text-xl font-semibold font-heading">Spanish Competitions</h3>
+                </div>
+                <div className="space-y-3">
+                  <div className="flex justify-between items-center p-3 rounded-xl bg-slate-800/30 light:bg-slate-100">
+                    <div className="flex items-center gap-2">
+                      <span className="text-xl">🇪🇸</span>
+                      <span>La Liga</span>
+                    </div>
+                    <span className="text-sm opacity-70">Coming soon...</span>
+                  </div>
+                  <div className="flex justify-between items-center p-3 rounded-xl bg-slate-800/30 light:bg-slate-100">
+                    <div className="flex items-center gap-2">
+                      <span className="text-xl">🏆</span>
+                      <span>Copa del Rey</span>
+                    </div>
+                    <span className="text-sm opacity-70">Coming soon...</span>
+                  </div>
+                  <div className="flex justify-between items-center p-3 rounded-xl bg-slate-800/30 light:bg-slate-100">
+                    <div className="flex items-center gap-2">
+                      <span className="text-xl">🛡️</span>
+                      <span>Supercopa</span>
+                    </div>
+                    <span className="text-sm opacity-70">Coming soon...</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Italian Competitions */}
+              <div className="competition-card rounded-2xl p-5 border border-slate-800/40 light:border-slate-200 bg-slate-900/40 light:bg-white">
+                <div className="flex items-center gap-3 mb-4">
+                  <span className="text-3xl">🇮🇹</span>
+                  <h3 className="text-xl font-semibold font-heading">Italian Competitions</h3>
+                </div>
+                <div className="space-y-3">
+                  <div className="flex justify-between items-center p-3 rounded-xl bg-slate-800/30 light:bg-slate-100">
+                    <div className="flex items-center gap-2">
+                      <span className="text-xl">🇮🇹</span>
+                      <span>Serie A</span>
+                    </div>
+                    <span className="text-sm opacity-70">Coming soon...</span>
+                  </div>
+                  <div className="flex justify-between items-center p-3 rounded-xl bg-slate-800/30 light:bg-slate-100">
+                    <div className="flex items-center gap-2">
+                      <span className="text-xl">🏆</span>
+                      <span>Coppa Italia</span>
+                    </div>
+                    <span className="text-sm opacity-70">Coming soon...</span>
+                  </div>
+                  <div className="flex justify-between items-center p-3 rounded-xl bg-slate-800/30 light:bg-slate-100">
+                    <div className="flex items-center gap-2">
+                      <span className="text-xl">🛡️</span>
+                      <span>Supercoppa</span>
+                    </div>
+                    <span className="text-sm opacity-70">Coming soon...</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* German Competitions */}
+              <div className="competition-card rounded-2xl p-5 border border-slate-800/40 light:border-slate-200 bg-slate-900/40 light:bg-white">
+                <div className="flex items-center gap-3 mb-4">
+                  <span className="text-3xl">🇩🇪</span>
+                  <h3 className="text-xl font-semibold font-heading">German Competitions</h3>
+                </div>
+                <div className="space-y-3">
+                  <div className="flex justify-between items-center p-3 rounded-xl bg-slate-800/30 light:bg-slate-100">
+                    <div className="flex items-center gap-2">
+                      <span className="text-xl">🇩🇪</span>
+                      <span>Bundesliga</span>
+                    </div>
+                    <span className="text-sm opacity-70">Coming soon...</span>
+                  </div>
+                  <div className="flex justify-between items-center p-3 rounded-xl bg-slate-800/30 light:bg-slate-100">
+                    <div className="flex items-center gap-2">
+                      <span className="text-xl">🏆</span>
+                      <span>DFB Pokal</span>
+                    </div>
+                    <span className="text-sm opacity-70">Coming soon...</span>
+                  </div>
+                  <div className="flex justify-between items-center p-3 rounded-xl bg-slate-800/30 light:bg-slate-100">
+                    <div className="flex items-center gap-2">
+                      <span className="text-xl">🛡️</span>
+                      <span>Supercup</span>
+                    </div>
+                    <span className="text-sm opacity-70">Coming soon...</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* French Competitions */}
+              <div className="competition-card rounded-2xl p-5 border border-slate-800/40 light:border-slate-200 bg-slate-900/40 light:bg-white">
+                <div className="flex items-center gap-3 mb-4">
+                  <span className="text-3xl">🇫🇷</span>
+                  <h3 className="text-xl font-semibold font-heading">French Competitions</h3>
+                </div>
+                <div className="space-y-3">
+                  <div className="flex justify-between items-center p-3 rounded-xl bg-slate-800/30 light:bg-slate-100">
+                    <div className="flex items-center gap-2">
+                      <span className="text-xl">🇫🇷</span>
+                      <span>Ligue 1</span>
+                    </div>
+                    <span className="text-sm opacity-70">Coming soon...</span>
+                  </div>
+                  <div className="flex justify-between items-center p-3 rounded-xl bg-slate-800/30 light:bg-slate-100">
+                    <div className="flex items-center gap-2">
+                      <span className="text-xl">🏆</span>
+                      <span>Coupe de France</span>
+                    </div>
+                    <span className="text-sm opacity-70">Coming soon...</span>
+                  </div>
+                  <div className="flex justify-between items-center p-3 rounded-xl bg-slate-800/30 light:bg-slate-100">
+                    <div className="flex items-center gap-2">
+                      <span className="text-xl">🛡️</span>
+                      <span>Supercup</span>
+                    </div>
+                    <span className="text-sm opacity-70">Coming soon...</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Additional Content */}
+          <section className="mb-12">
+            <h2 className="text-2xl font-bold mb-6 font-heading section-heading">The Future of Football Analysis</h2>
+            <div className="grid md:grid-cols-2 gap-8">
+              <div>
+                <h3 className="text-xl font-semibold mb-4 font-heading">Why PM Matters</h3>
+                <p className="mb-4">PMxFootball isn't here to replace the stats you know — it's here to make them better. We believe that football deserves a metric that's as multi-dimensional as the game itself.</p>
+                <p className="mb-4">With PM Index, fans, analysts, and even casual followers can finally see beyond the scoreboard and discover who really controlled the game.</p>
+              </div>
+              <div>
+                <h3 className="text-xl font-semibold mb-4 font-heading">Real Examples</h3>
+                <p className="mb-4">Out of the last five Champions League finals, only two were won by the team with the higher xG. On PM, though, the winners came out on top in all five — showing how closely it reflects the reality of performance.</p>
+                <p className="mb-4">A famous example is Barcelona's semi-final against Inter, where they conceded four goals but still topped PM. The scoreline went against them, but PM showed the truth: Barcelona were the stronger side in overall play.</p>
+              </div>
+            </div>
+          </section>
+
+          {/* Quick Access */}
+          <section className="mt-8">
+            <h2 className="text-xl font-bold mb-4 font-heading">Quick Access</h2>
+            <div className="grid md:grid-cols-3 gap-4">
+              {COMPETITIONS.slice(0,6).map(c => <CompetitionCard key={c.key} comp={c} />)}
+            </div>
+          </section>
+        </main>
+      );
+    }
+
+    function CompetitionCard({comp}){
+      const [route, setRoute] = window.appRouter;
+      return (
+        <button onClick={()=>setRoute(`/competition/${comp.key}`)} className="text-left rounded-2xl p-5 border border-slate-800/40 light:border-slate-200 hover:shadow-soft hover:-translate-y-0.5 transition bg-slate-900/40 light:bg-white">
+          <div className="flex items-center justify-between">
+            <div>
+              <div className="font-semibold font-heading">{comp.name}</div>
+              <div className="text-xs opacity-70">{comp.season} • {comp.nation} • {comp.type}</div>
+            </div>
+            <div className="text-sm opacity-80">{comp.games} games</div>
+          </div>
+        </button>
+      );
+    }
+
+    function SeasonPage({ season='2024/25' }){
+      const comps = useMemo(()=> COMPETITIONS.filter(c=>c.season===season), [season]);
+      const groups = useMemo(()=> ({
+        England: comps.filter(c=>c.nation==='England'),
+        Spain: comps.filter(c=>c.nation==='Spain'),
+        Italy: comps.filter(c=>c.nation==='Italy'),
+        Germany: comps.filter(c=>c.nation==='Germany'),
+        France: comps.filter(c=>c.nation==='France'),
+        UEFA: comps.filter(c=>c.nation==='UEFA'),
+      }), [comps]);
+
+      return (
+        <main className="container mx-auto px-4 py-8">
+          <h2 className="text-2xl font-bold mb-6 font-heading section-heading">Season {season}</h2>
+          <div className="grid md:grid-cols-2 gap-6">
+            {Object.entries(groups).map(([nation, list]) => (
+              <Card key={nation} title={nation}>
+                <div className="grid sm:grid-cols-2 gap-3">
+                  {list.map(c => <CompetitionCard key={c.key} comp={c} />)}
+                </div>
+              </Card>
+            ))}
+          </div>
+        </main>
+      );
+    }
+
+    function PointsTable({ compKey }){
+      const db = loadLS('pm_db', DEFAULT_DB);
+      const teams = db.teams.filter(t=>t.competition===compKey);
+      const fixtures = db.fixtures.filter(f=>f.comp===compKey);
+
+      // Aggregate PM per team
+      const teamPM = {};
+      teams.forEach(t => teamPM[t.team_id] = 0);
+      fixtures.forEach(f => {
+        [f.home_id, f.away_id].forEach(tid => {
+          const key = `${f.fixture_id}_${tid}`;
+          const pm = computePM(db.stats[key] || {});
+          teamPM[tid] = (teamPM[tid]||0) + pm;
+        });
+      });
+
+      const rows = teams.map(t => ({ team: t.name, coeff: t.coeff, pm: Number((teamPM[t.team_id]||0).toFixed(2)) }))
+                        .sort((a,b)=> b.pm - a.pm);
+
+      return (
+        <div className="overflow-x-auto">
+          <table className="table table-hover table-sm w-full align-middle">
+            <thead className="border-b border-slate-700 light:border-slate-200">
+              <tr>
+                <th className="py-2">#</th>
+                <th>Team</th>
+                <th>Coeff</th>
+                <th className="text-right">PM</th>
+              </tr>
+            </thead>
+            <tbody>
+              {rows.map((r,i)=> (
+                <tr key={r.team} className="border-b border-slate-800/40 light:border-slate-100">
+                  <td className="py-2">{i+1}</td>
+                  <td>{r.team}</td>
+                  <td>{r.coeff}</td>
+                  <td className="text-right font-semibold">{r.pm}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      );
+    }
+
+    function TrendChart({ compKey }){
+      const canvasRef = useRef(null);
+      const db = loadLS('pm_db', DEFAULT_DB);
+      const teams = db.teams.filter(t=>t.competition===compKey);
+      const fixtures = db.fixtures.filter(f=>f.comp===compKey).sort((a,b)=> a.date.localeCompare(b.date));
+      const labels = fixtures.map(f=> f.date);
+      const datasets = teams.map(t=>{
+        let cum = 0; const data = fixtures.map(f=>{
+          const pm = computePM(db.stats[`${f.fixture_id}_${t.team_id}`] || {});
+          cum += pm; return Number(cum.toFixed(2));
+        });
+        return { label: t.name, data };
+      });
+
+      useChart(canvasRef, { type:'line', data:{ labels, datasets }, options:{ responsive:true, plugins:{ legend:{ position:'bottom' } } } });
+      return <canvas ref={canvasRef} height="160"></canvas>;
+    }
+
+    function BarChart({ compKey }){
+      const canvasRef = useRef(null);
+      const db = loadLS('pm_db', DEFAULT_DB);
+      const teams = db.teams.filter(t=>t.competition===compKey);
+      const data = teams.map(t=>{
+        const pmSum = Object.entries(db.stats)
+          .filter(([k])=> k.endsWith(`_${t.team_id}`))
+          .reduce((acc,[k,v])=> acc + computePM(v), 0);
+        return Number(pmSum.toFixed(2));
+      });
+      const labels = teams.map(t=>t.name);
+      useChart(canvasRef, { type:'bar', data:{ labels, datasets:[{ label:'Season PM', data }] }, options:{ responsive:true, plugins:{ legend:{ position:'bottom' } } } });
+      return <canvas ref={canvasRef} height="160"></canvas>;
+    }
+
+    function DistChart({ compKey, metric='goals' }){
+      const canvasRef = useRef(null);
+      const db = loadLS('pm_db', DEFAULT_DB);
+      const teams = db.teams.filter(t=>t.competition===compKey);
+      const data = teams.map(t=> Object.entries(db.stats).filter(([k])=>k.endsWith(`_${t.team_id}`)).reduce((a,[,v])=> a + (v[metric]||0), 0));
+      const labels = teams.map(t=>t.name);
+      useChart(canvasRef, { type:'pie', data:{ labels, datasets:[{ data }] }, options:{ responsive:true } });
+      return <canvas ref={canvasRef} height="160"></canvas>;
+    }
+
+    function FixturesTable({ compKey, openMatch }){
+      const db = loadLS('pm_db', DEFAULT_DB);
+      const fixtures = db.fixtures.filter(f=>f.comp===compKey).sort((a,b)=> a.date.localeCompare(b.date));
+      const teamName = id => db.teams.find(t=>t.team_id===id)?.name || 'TBD';
+      return (
+        <div className="overflow-x-auto">
+          <table className="table table-striped w-full">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Fixture</th>
+                <th>Score</th>
+                <th>PM (H / A)</th>
+              </tr>
+            </thead>
+            <tbody>
+              {fixtures.map(f=>{
+                const pmH = computePM(db.stats[`${f.fixture_id}_${f.home_id}`]||{});
+                const pmA = computePM(db.stats[`${f.fixture_id}_${f.away_id}`]||{});
+                return (
+                  <tr key={f.fixture_id} className="hover:bg-slate-800/30 light:hover:bg-slate-100 cursor-pointer" onClick={()=>openMatch(f.fixture_id)}>
+                    <td className="whitespace-nowrap">{f.date}</td>
+                    <td>{teamName(f.home_id)} vs {teamName(f.away_id)}</td>
+                    <td>{f.score || '-'}</td>
+                    <td>{pmH} / {pmA}</td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+      );
+    }
+
+    function MatchModal({ fixtureId, onClose }){
+      const db = loadLS('pm_db', DEFAULT_DB);
+      const f = db.fixtures.find(x=>x.fixture_id===fixtureId);
+      const home = db.teams.find(t=>t.team_id===f.home_id); const away = db.teams.find(t=>t.team_id===f.away_id);
+      const statsH = db.stats[`${fixtureId}_${home.team_id}`] || {}; const statsA = db.stats[`${fixtureId}_${away.team_id}`] || {};
+      const pmH = computePM(statsH); const pmA = computePM(statsA);
+
+      useEffect(()=>{ lucide.createIcons(); }, []);
+
+      return (
+        <div className="fixed inset-0 z-50 bg-black/60 flex items-center justify-center p-4">
+          <div className="w-full max-w-3xl rounded-2xl bg-slate-900 light:bg-white border border-slate-700 light:border-slate-200 shadow-soft">
+            <div className="flex items-center justify-between p-4 border-b border-slate-700 light:border-slate-200">
+              <div className="font-semibold font-heading">{home.name} vs {away.name} • {f.date}</div>
+              <button onClick={onClose} className="p-2 rounded-lg hover:bg-slate-800 light:hover:bg-slate-100"><i data-lucide="x" class="w-5 h-5"></i></button>
+            </div>
+            <div className="p-4 grid md:grid-cols-2 gap-4">
+              <Card title="Score"><div className="text-3xl font-bold font-heading">{f.score || '—'}</div></Card>
+              <Card title="PM Impact"><div className="text-3xl font-bold font-heading">{pmH} / {pmA}</div></Card>
+              <Card title={`${home.name} Stats`}>
+                <MatchStatsGrid stats={statsH} />
+              </Card>
+              <Card title={`${away.name} Stats`}>
+                <MatchStatsGrid stats={statsA} />
+              </Card>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    const MatchStatsGrid = ({stats}) => (
+      <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 text-sm">
+        {Object.entries({
+          goals:'Goals', shots:'Shots', shotsOnTarget:'On Target', xg:'xG', poss:'Possession', passes:'Passes', fouls:'Fouls', yellows:'Yellows', reds:'Reds'
+        }).map(([k,label])=> (
+          <div key={k} className="rounded-xl p-3 border border-slate-800/40 light:border-slate-200">
+            <div className="text-xs opacity-70">{label}</div>
+            <div className="text-lg font-semibold font-heading">{stats?.[k] ?? '—'}</div>
+          </div>
+        ))}
+      </div>
+    );
+
+    function CompetitionPage({ compKey }){
+      const comp = COMPETITIONS.find(c=>c.key===compKey);
+      const [matchOpen, setMatchOpen] = useState(null);
+      return (
+        <main className="container mx-auto px-4 py-6 space-y-6">
+          <div className="flex items-center justify-between">
+            <div>
+              <h2 className="text-2xl font-bold font-heading">{comp.name}</h2>
+              <div className="opacity-70 text-sm">{comp.season} • {comp.nation} • {comp.type}</div>
+            </div>
+          </div>
+
+          <section className="grid lg:grid-cols-3 gap-5">
+            <Card className="lg:col-span-2" title="Points Table (PM-based)">
+              <PointsTable compKey={compKey} />
+            </Card>
+            <Card title="Summary">
+              <div className="grid grid-cols-3 gap-3">
+                <Stat label="Games" value={comp.games} />
+                <Stat label="Teams" value={loadLS('pm_db', DEFAULT_DB).teams.filter(t=>t.competition===compKey).length} />
+                <Stat label="Fixtures" value={loadLS('pm_db', DEFAULT_DB).fixtures.filter(f=>f.comp===compKey).length} />
+              </div>
+            </Card>
+          </section>
+
+          <section className="grid lg:grid-cols-3 gap-5">
+            <Card className="lg:col-span-2" title="Team PM Trends (Cumulative)">
+              <TrendChart compKey={compKey} />
+            </Card>
+            <Card title="Team Comparison (Season PM)">
+              <BarChart compKey={compKey} />
+            </Card>
+          </section>
+
+          <section className="grid lg:grid-cols-3 gap-5">
+            <Card className="lg:col-span-1" title="Distribution: Goals">
+              <DistChart compKey={compKey} metric="goals" />
+            </Card>
+            <Card className="lg:col-span-1" title="Distribution: Possession">
+              <DistChart compKey={compKey} metric="poss" />
+            </Card>
+            <Card className="lg:col-span-1" title="Distribution: xG">
+              <DistChart compKey={compKey} metric="xg" />
+            </Card>
+          </section>
+
+          <section>
+            <Card title="Fixtures & Results">
+              <FixturesTable compKey={compKey} openMatch={(id)=>setMatchOpen(id)} />
+            </Card>
+          </section>
+
+          {matchOpen && <MatchModal fixtureId={matchOpen} onClose={()=>setMatchOpen(null)} />}
+        </main>
+      );
+    }
+
+    // ---------- Admin ----------
+    function AdminLogin({ onAuthed }){
+      const [u,setU] = useState(''); const [p,setP] = useState(''); const [err,setErr] = useState('');
+      const tryLogin = () => {
+        const db = loadLS('pm_db', DEFAULT_DB);
+        const ok = db.users.some(x=>x.username===u && x.password===p);
+        if(ok){ sessionStorage.setItem('pm_authed','1'); onAuthed(true); }
+        else setErr('Invalid credentials');
+      };
+      useEffect(()=>{ lucide.createIcons(); }, []);
+      return (
+        <main className="min-h-[60vh] container mx-auto px-4 grid place-items-center">
+          <div className="w-full max-w-md rounded-2xl p-6 border border-slate-800/40 light:border-slate-200 bg-slate-900/50 light:bg-white shadow-soft">
+            <div className="flex items-center gap-2 mb-4">
+              <i data-lucide="lock" class="w-5 h-5"></i>
+              <div className="font-semibold font-heading">Admin Login</div>
+            </div>
+            <div className="space-y-3">
+              <input className="w-full px-3 py-2 rounded-xl bg-slate-800 light:bg-slate-100 border border-slate-700 light:border-slate-300 font-body" placeholder="Username" value={u} onChange={e=>setU(e.target.value)} />
+              <input type="password" className="w-full px-3 py-2 rounded-xl bg-slate-800 light:bg-slate-100 border border-slate-700 light:border-slate-300 font-body" placeholder="Password" value={p} onChange={e=>setP(e.target.value)} />
+              {err && <div className="text-red-400 text-sm">{err}</div>}
+              <button onClick={tryLogin} className="w-full py-2 rounded-xl bg-brand-600 hover:bg-brand-500 font-body">Sign In</button>
+              <p className="text-xs opacity-70 font-body">Only the site owner has credentials. All writes are restricted to authenticated sessions.</p>
+            </div>
+          </div>
+        </main>
+      );
+    }
+
+    function AdminPanel(){
+      const [tab, setTab] = useState('schema');
+      const [db, setDb] = useState(loadLS('pm_db', DEFAULT_DB));
+      const [msg, setMsg] = useState('');
+
+      const save = (next) => { saveLS('pm_db', next); setDb(next); setMsg('Saved'); setTimeout(()=>setMsg(''), 1200); };
+
+      const addTeam = () => {
+        const name = prompt('Team name?'); if(!name) return;
+        const competition = prompt('Competition key (e.g., epl, laliga, ucl)?'); if(!competition) return;
+        const coeff = Number(prompt('Coefficient points?')||'0');
+        const team_id = (db.teams.at(-1)?.team_id||0)+1;
+        save({ ...db, teams: [...db.teams, { team_id, name, competition, coeff }] });
+      };
+
+      const addFixture = () => {
+        const comp = prompt('Competition key?'); if(!comp) return;
+        const date = prompt('Date (YYYY-MM-DD)?'); if(!date) return;
+        const home_id = Number(prompt('Home team_id?')); const away_id = Number(prompt('Away team_id?'));
+        const score = prompt('Score (e.g., 2-1) or leave blank');
+        const fixture_id = (db.fixtures.at(-1)?.fixture_id||0)+1;
+        save({ ...db, fixtures:[...db.fixtures, { fixture_id, date, comp, home_id, away_id, score }] });
+      };
+
+      const editStats = () => {
+        const fixture_id = Number(prompt('Fixture ID?')); if(!fixture_id) return;
+        const team_id = Number(prompt('Team ID?')); if(!team_id) return;
+        const key = `${fixture_id}_${team_id}`;
+        const base = db.stats[key] || {};
+        const fields = ['goals','shots','shotsOnTarget','xg','poss','passes','fouls','yellows','reds'];
+        const next = { ...base };
+        fields.forEach(f=>{ const v = prompt(`${f}`, base[f] ?? ''); if(v!==null && v!=='') next[f] = Number(v); });
+        save({ ...db, stats: { ...db.stats, [key]: next } });
+      };
+
+      const uploadCSV = (e) => {
+        const file = e.target.files?.[0]; if(!file) return;
+        const reader = new FileReader();
+        reader.onload = () => {
+          const text = reader.result; // Simple CSV: type, ...fields
+          // Supported rows:
+          // TEAM,team_id,name,competition,coeff
+          // FIXTURE,fixture_id,date,comp,home_id,away_id,score
+          // STATS,fixture_id,team_id,goals,shots,shotsOnTarget,xg,poss,passes,fouls,yellows,reds
+          const lines = String(text).split(/\r?\n/).filter(Boolean);
+          const next = { ...db, teams:[...db.teams], fixtures:[...db.fixtures], stats:{...db.stats} };
+          for(const line of lines){
+            const cols = line.split(',');
+            if(cols[0]==='TEAM'){
+              const [, team_id, name, competition, coeff] = cols; next.teams.push({ team_id:Number(team_id), name, competition, coeff:Number(coeff) });
+            } else if(cols[0]==='FIXTURE'){
+              const [, fixture_id, date, comp, home_id, away_id, score] = cols; next.fixtures.push({ fixture_id:Number(fixture_id), date, comp, home_id:Number(home_id), away_id:Number(away_id), score });
+            } else if(cols[0]==='STATS'){
+              const [, fixture_id, team_id, goals, shots, shotsOnTarget, xg, poss, passes, fouls, yellows, reds] = cols;
+              const key = `${Number(fixture_id)}_${Number(team_id)}`;
+              next.stats[key] = { goals:+goals, shots:+shots, shotsOnTarget:+shotsOnTarget, xg:+xg, poss:+poss, passes:+passes, fouls:+fouls, yellows:+yellows, reds:+reds };
+            }
+          }
+          save(next);
+        };
+        reader.readAsText(file);
+      };
+
+      const clearDB = () => { if(confirm('Clear all local data?')) { saveLS('pm_db', DEFAULT_DB); setDb(loadLS('pm_db', DEFAULT_DB)); } };
+
+      const Table = ({rows, cols}) => (
+        <div className="overflow-x-auto">
+          <table className="table table-sm w-full">
+            <thead><tr>{cols.map(c=> <th key={c}>{c}</th>)}</tr></thead>
+            <tbody>
+              {rows.map((r,i)=> <tr key={i}>{cols.map(c=> <td key={c}>{String(r[c])}</td>)}</tr>)}
+            </tbody>
+          </table>
+        </div>
+      );
+
+      return (
+        <main className="container mx-auto px-4 py-6 space-y-6">
+          <div className="flex items-center justify-between">
+            <h2 className="text-2xl font-bold font-heading">Admin Panel</h2>
+            <div className="text-sm opacity-70 font-body">Local demo only. In production, these map to secured API endpoints.</div>
+          </div>
+
+          <div className="flex gap-2 flex-wrap">
+            {['schema','teams','fixtures','stats','import'].map(t => (
+              <button key={t} onClick={()=>setTab(t)} className={clsx('px-3 py-2 rounded-xl font-body', tab===t ? 'bg-brand-600' : 'bg-slate-800/60 light:bg-slate-100')}>{t.toUpperCase()}</button>
+            ))}
+          </div>
+
+          {tab==='schema' && (
+            <Card title="Database Schema (PostgreSQL recommended)">
+{ /* Explained as markdown-like content */ }
+              <div className="space-y-2 text-sm opacity-90 font-body">
+                <p><strong>teams</strong>(team_id PK, name, competition, coeff)</p>
+                <p><strong>competitions</strong>(competition_id PK, key, name, type, nation, season)</p>
+                <p><strong>fixtures</strong>(fixture_id PK, date, comp, home_id FK-{'>'}teams, away_id FK-{'>'}teams, score)</p>
+                <p><strong>stats</strong>(fixture_id FK, team_id FK, goals, shots, shotsOnTarget, xg, poss, passes, fouls, yellows, reds)</p>
+                <p><strong>pm_values</strong>(fixture_id FK, team_id FK, pm_value)</p>
+                <p><strong>users</strong>(username PK, password_hash)</p>
+                <div className="mt-3 p-3 rounded-xl border border-slate-800/40 light:border-slate-200">
+                  <div className="font-semibold mb-2 font-heading">CSV Import Format</div>
+                  <pre className="text-xs overflow-auto font-body">
+TEAM,1,Manchester City,epl,100
+FIXTURE,1,2024-08-12,epl,1,2,2-1
+STATS,1,1,2,15,7,1.8,56,560,10,1,0
+                  </pre>
+                </div>
+              </div>
+            </Card>
+          )}
+
+          {tab==='teams' && (
+            <Card title="Teams" extra={<button onClick={addTeam} className="px-3 py-2 rounded-xl bg-brand-600 font-body">Add Team</button>}>
+              <Table cols={["team_id","name","competition","coeff"]} rows={db.teams} />
+            </Card>
+          )}
+
+          {tab==='fixtures' && (
+            <Card title="Fixtures" extra={<button onClick={addFixture} className="px-3 py-2 rounded-xl bg-brand-600 font-body">Add Fixture</button>}>
+              <Table cols={["fixture_id","date","comp","home_id","away_id","score"]} rows={db.fixtures} />
+            </Card>
+          )}
+
+          {tab==='stats' && (
+            <Card title="Stats" extra={<button onClick={editStats} className="px-3 py-2 rounded-xl bg-brand-600 font-body">Edit/Add Stats</button>}>
+              <Table cols={["key","goals","shots","shotsOnTarget","xg","poss","passes","fouls","yellows","reds"]}
+                     rows={Object.entries(db.stats).map(([k,v])=> ({ key:k, ...v }))} />
+            </Card>
+          )}
+
+          {tab==='import' && (
+            <Card title="Import / Export">
+              <div className="flex flex-wrap items-center gap-3 font-body">
+                <label className="px-3 py-2 rounded-xl bg-slate-800/60 light:bg-slate-100 cursor-pointer">
+                  <input type="file" accept=".csv" className="hidden" onChange={uploadCSV} />
+                  Upload CSV
+                </label>
+                <button className="px-3 py-2 rounded-xl bg-slate-800/60 light:bg-slate-100" onClick={()=>{
+                  const blob = new Blob([JSON.stringify(db,null,2)], {type:'application/json'});
+                  const url = URL.createObjectURL(blob);
+                  const a = document.createElement('a'); a.href=url; a.download='pm_db_export.json'; a.click(); URL.revokeObjectURL(url);
+                }}>Export JSON</button>
+                <button className="px-3 py-2 rounded-xl bg-red-600 hover:bg-red-500" onClick={clearDB}>Reset (Demo)</button>
+                {msg && <span className="text-sm opacity-70">{msg}</span>}
+              </div>
+            </Card>
+          )}
+
+          <Card title="Auto PM Calculation">
+            <p className="text-sm opacity-90 font-body">Whenever you add or edit <em>stats</em>, the system recalculates PM on the fly via a hidden function and displays aggregates in competition pages and tables. In production, compute & persist to <code>pm_values</code> on the backend.</p>
+          </Card>
+        </main>
+      );
+    }
+
+    // ---------- Router & App ----------
+    function App(){
+      const [theme, setTheme] = useState(loadLS('pm_theme','dark'));
+      const [route, setRoute] = useState('/');
+      const [season, setSeason] = useState(localStorage.getItem('pm_activeSeason')||'2024/25');
+      const isAuthed = sessionStorage.getItem('pm_authed')==='1';
+
+      // expose simple router control to children
+      window.appRouter = useState(route);
+      window.appRouter[0] = route; window.appRouter[1] = setRoute;
+
+      useEffect(()=>{ initDB(); document.documentElement.classList.add(theme); }, []);
+      useEffect(()=>{ lucide.createIcons(); }, [route, theme]);
+
+      let content = <Home/>;
+      if(route.startsWith('/season/')){
+        const s = route.split('/').slice(2).join('/');
+        content = <SeasonPage season={s}/>
+      } else if(route.startsWith('/competition/')){
+        const key = route.split('/').pop();
+        content = <CompetitionPage compKey={key} />
+      } else if(route.startsWith('/admin')){
+        content = isAuthed ? <AdminPanel/> : <AdminLogin onAuthed={()=>setRoute('/admin')} />
+      }
+
+      return (
+        <div className="light:light dark:dark">
+          <NavBar theme={theme} setTheme={setTheme} route={route} setRoute={setRoute} isAuthed={isAuthed} setRouteSeason={setSeason} />
+          {content}
+          <footer className="mt-12 py-8 border-t border-slate-800/60 light:border-slate-200 text-center opacity-80">
+            <div className="container mx-auto px-4">
+              <div className="text-sm font-body">© {new Date().getFullYear()} PMxFootball • No external APIs. Admin-edited only. • Demo UI</div>
+            </div>
+          </footer>
+        </div>
+      );
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<App/>);
+  </script>
+</body>
+</html>
