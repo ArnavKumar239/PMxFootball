@@ -182,28 +182,15 @@
   "germany": [
     { "key": "1", "name": "Bundesliga", "teams": [], "stages": [
       { "name": "Gameweek-1", "fixtures": [
-        { "home": "Arsenal", "score": "3-0", "away": "Real Madrid", "pm": "85-72" },
-        { "home": "Bayern München", "score": "1-2", "away": "Inter", "pm": "78-82" },
-        { "home": "Barcelona", "score": "4-0", "away": "Dortmund", "pm": "92-65" },
-        { "home": "PSG", "score": "3-1", "away": "Aston Villa", "pm": "88-76" },
-        { "home": "Aston Villa", "score": "3-2", "away": "PSG", "pm": "84-81" },
-        { "home": "Dortmund", "score": "3-1", "away": "Barcelona", "pm": "87-79" },
-        { "home": "Barcelona", "score": "4-0", "away": "Dortmund", "pm": "92-65" },
-        { "home": "PSG", "score": "3-1", "away": "Aston Villa", "pm": "88-76" },
-        { "home": "Aston Villa", "score": "3-2", "away": "PSG", "pm": "84-81" },
-        { "home": "Dortmund", "score": "3-1", "away": "Barcelona", "pm": "87-79" }
-      ]},
-      { "name": "Gameweek-2", "fixtures": [
-        { "home": "Arsenal", "score": "3-0", "away": "Real Madrid", "pm": "85-72" },
-        { "home": "Bayern München", "score": "1-2", "away": "Inter", "pm": "78-82" },
-        { "home": "Barcelona", "score": "4-0", "away": "Dortmund", "pm": "92-65" },
-        { "home": "PSG", "score": "3-1", "away": "Aston Villa", "pm": "88-76" },
-        { "home": "Aston Villa", "score": "3-2", "away": "PSG", "pm": "84-81" },
-        { "home": "Bayern München", "score": "1-2", "away": "Inter", "pm": "78-82" },
-        { "home": "Barcelona", "score": "4-0", "away": "Dortmund", "pm": "92-65" },
-        { "home": "PSG", "score": "3-1", "away": "Aston Villa", "pm": "88-76" },
-        { "home": "Aston Villa", "score": "3-2", "away": "PSG", "pm": "84-81" },
-        { "home": "Dortmund", "score": "3-1", "away": "Barcelona", "pm": "87-79" }
+        { "home": "Bayern Munich", "score": "6-0", "away": "RB Leipzig", "pm": "2.85-1.40" },
+        { "home": "Bayer Leverkusen", "score": "1-2", "away": "Hoffenheim", "pm": "1.89-1.98" },
+        { "home": "Frankfurt", "score": "4-1", "away": "Werder Bremen", "pm": "2.51-1.59" },
+        { "home": "Heidenheim", "score": "1-3", "away": "Wolfsburg", "pm": "1.72-2.38" },
+        { "home": "Freiburg", "score": "1-3", "away": "Augsburg", "pm": "1.96-2.08" },
+        { "home": "Union Berlin", "score": "2-1", "away": "VfB Stuttgart", "pm": "1.76-2.15" },
+        { "home": "St Pauli", "score": "3-3", "away": "Dortmund", "pm": "1.97-2.11" },
+        { "home": "Mainz", "score": "0-1", "away": "Koln", "pm": "1.93-2.34" },
+        { "home": "Monchengladbach", "score": "0-0", "away": "Hamburger", "pm": "2.30-2.07" }
       ]}
     ] },
     { "key": "2", "name": "DFB Pokal", "teams": [], "stages": [
