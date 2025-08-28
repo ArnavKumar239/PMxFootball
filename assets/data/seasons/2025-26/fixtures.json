@@ -106,28 +106,26 @@
   "france": [
     { "key": "1", "name": "Ligue 1", "teams": [], "stages": [
       { "name": "Gameweek-1", "fixtures": [
-        { "home": "Arsenal", "score": "3-0", "away": "Real Madrid", "pm": "85-72" },
-        { "home": "Bayern München", "score": "1-2", "away": "Inter", "pm": "78-82" },
-        { "home": "Barcelona", "score": "4-0", "away": "Dortmund", "pm": "92-65" },
-        { "home": "PSG", "score": "3-1", "away": "Aston Villa", "pm": "88-76" },
-        { "home": "Aston Villa", "score": "3-2", "away": "PSG", "pm": "84-81" },
-        { "home": "Dortmund", "score": "3-1", "away": "Barcelona", "pm": "87-79" },
-        { "home": "Barcelona", "score": "4-0", "away": "Dortmund", "pm": "92-65" },
-        { "home": "PSG", "score": "3-1", "away": "Aston Villa", "pm": "88-76" },
-        { "home": "Aston Villa", "score": "3-2", "away": "PSG", "pm": "84-81" },
-        { "home": "Dortmund", "score": "3-1", "away": "Barcelona", "pm": "87-79" }
+        { "home": "Rennes", "score": "1-0", "away": "Marseille", "pm": "2.30-2.23" },
+        { "home": "Lens", "score": "0-1", "away": "Lyon", "pm": "2.14-2.29" },
+        { "home": "Monaco", "score": "3-1", "away": "Le Havre", "pm": "2.38-1.50" },
+        { "home": "Nice", "score": "0-1", "away": "Toulouse", "pm": "2.01-2.14" },
+        { "home": "Brest", "score": "3-3", "away": "Lille", "pm": "1.91-2.03" },
+        { "home": "Angers", "score": "1-0", "away": "Paris FC", "pm": "2.12-2.07" },
+        { "home": "Auxerre", "score": "1-0", "away": "Lorient", "pm": "2.31-2.10" },
+        { "home": "Metz", "score": "0-1", "away": "Strasbourg", "pm": "1.85-2.27" },
+        { "home": "Nantes", "score": "0-1", "away": "PSG", "pm": "1.80-2.37" }
       ]},
       { "name": "Gameweek-2", "fixtures": [
-        { "home": "Arsenal", "score": "3-0", "away": "Real Madrid", "pm": "85-72" },
-        { "home": "Bayern München", "score": "1-2", "away": "Inter", "pm": "78-82" },
-        { "home": "Barcelona", "score": "4-0", "away": "Dortmund", "pm": "92-65" },
-        { "home": "PSG", "score": "3-1", "away": "Aston Villa", "pm": "88-76" },
-        { "home": "Aston Villa", "score": "3-2", "away": "PSG", "pm": "84-81" },
-        { "home": "Bayern München", "score": "1-2", "away": "Inter", "pm": "78-82" },
-        { "home": "Barcelona", "score": "4-0", "away": "Dortmund", "pm": "92-65" },
-        { "home": "PSG", "score": "3-1", "away": "Aston Villa", "pm": "88-76" },
-        { "home": "Aston Villa", "score": "3-2", "away": "PSG", "pm": "84-81" },
-        { "home": "Dortmund", "score": "3-1", "away": "Barcelona", "pm": "87-79" }
+        { "home": "PSG", "score": "1-0", "away": "Angers", "pm": "2.51-1.85" },
+        { "home": "Marseille", "score": "5-2", "away": "Paris FC", "pm": "2.51-1.86" },
+        { "home": "Nice", "score": "3-1", "away": "Auxerre", "pm": "2.46-11.90" },
+        { "home": "Lyon", "score": "3-0", "away": "Metz", "pm": "2.71-1.72" },
+        { "home": "Lorient", "score": "4-0", "away": "Rennes", "pm": "2.78-1.58" },
+        { "home": "Le Havre", "score": "1-2", "away": "Lens", "pm": "2.08-2.23" },
+        { "home": "Strasbourg", "score": "1-0", "away": "Nantes", "pm": "2.42-1.91" },
+        { "home": "Toulouse", "score": "2-0", "away": "Brest", "pm": "2.31-1.72" },
+        { "home": "Lille", "score": "1-0", "away": "Monaco", "pm": "2.52-2.15" }
       ]}
     ] },
     { "key": "2", "name": "Coupe de France", "teams": [], "stages": [
@@ -144,28 +142,16 @@
   "italy": [
     { "key": "1", "name": "Serie A", "teams": [], "stages": [
       { "name": "Gameweek-1", "fixtures": [
-        { "home": "Arsenal", "score": "3-0", "away": "Real Madrid", "pm": "85-72" },
-        { "home": "Bayern München", "score": "1-2", "away": "Inter", "pm": "78-82" },
-        { "home": "Barcelona", "score": "4-0", "away": "Dortmund", "pm": "92-65" },
-        { "home": "PSG", "score": "3-1", "away": "Aston Villa", "pm": "88-76" },
-        { "home": "Aston Villa", "score": "3-2", "away": "PSG", "pm": "84-81" },
-        { "home": "Dortmund", "score": "3-1", "away": "Barcelona", "pm": "87-79" },
-        { "home": "Barcelona", "score": "4-0", "away": "Dortmund", "pm": "92-65" },
-        { "home": "PSG", "score": "3-1", "away": "Aston Villa", "pm": "88-76" },
-        { "home": "Aston Villa", "score": "3-2", "away": "PSG", "pm": "84-81" },
-        { "home": "Dortmund", "score": "3-1", "away": "Barcelona", "pm": "87-79" }
-      ]},
-      { "name": "Gameweek-2", "fixtures": [
-        { "home": "Arsenal", "score": "3-0", "away": "Real Madrid", "pm": "85-72" },
-        { "home": "Bayern München", "score": "1-2", "away": "Inter", "pm": "78-82" },
-        { "home": "Barcelona", "score": "4-0", "away": "Dortmund", "pm": "92-65" },
-        { "home": "PSG", "score": "3-1", "away": "Aston Villa", "pm": "88-76" },
-        { "home": "Aston Villa", "score": "3-2", "away": "PSG", "pm": "84-81" },
-        { "home": "Bayern München", "score": "1-2", "away": "Inter", "pm": "78-82" },
-        { "home": "Barcelona", "score": "4-0", "away": "Dortmund", "pm": "92-65" },
-        { "home": "PSG", "score": "3-1", "away": "Aston Villa", "pm": "88-76" },
-        { "home": "Aston Villa", "score": "3-2", "away": "PSG", "pm": "84-81" },
-        { "home": "Dortmund", "score": "3-1", "away": "Barcelona", "pm": "87-79" }
+        { "home": "Genoa", "score": "0-0", "away": "Lecce", "pm": "2.00-2.01" },
+        { "home": "Sassuolo", "score": "0-2", "away": "Napoli", "pm": "1.76-2.48" },
+        { "home": "Milan", "score": "1-2", "away": "Cremonese", "pm": "2.11-2.05" },
+        { "home": "Roma", "score": "1-0", "away": "Bologna", "pm": "2.33-1.85" },
+        { "home": "Cagliari", "score": "1-1", "away": "Fiorentina", "pm": "2.10-2.10" },
+        { "home": "Como", "score": "2-0", "away": "Lazio", "pm": "2.49-1.75" },
+        { "home": "Atalanta", "score": "1-1", "away": "Pisa", "pm": "2.26-1.71" },
+        { "home": "Juventus", "score": "2-0", "away": "Parma", "pm": "2.62-1.71" },
+        { "home": "Udinese", "score": "1-1", "away": "Hellas Verona", "pm": "2.07-1.87" },
+        { "home": "Inter", "score": "5-0", "away": "Torino", "pm": "2.82-1.59" }
       ]}
     ] },
     { "key": "2", "name": "Coppa Italia", "teams": [], "stages": [
