@@ -16,7 +16,7 @@
         { "home": "TBD", "score": "TBD", "away": "TBD", "pm": "TBD" }
       ]}
     ] },
-    { "key": "2", "name": "UEFA Super Cup", "teams": [], "stages": [
+    { "key": "3", "name": "UEFA Super Cup", "teams": [], "stages": [
       { "name": "Final", "fixtures": [
         { "home": "PSG", "score": "2-2", "away": "Tottenham", "pm": "2.07-1.82" }
       ]}
