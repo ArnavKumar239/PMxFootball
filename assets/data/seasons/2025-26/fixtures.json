@@ -1,50 +1,22 @@
 {
   "uefa": [
     { "key": "1", "name": "UEFA Champions League", "teams": [], "stages": [
-      { "name": "Quarter-final", "fixtures": [
-        { "home": "Arsenal", "score": "3-0", "away": "Real Madrid", "pm": "85-72" },
-        { "home": "Bayern München", "score": "1-2", "away": "Inter", "pm": "78-82" },
-        { "home": "Barcelona", "score": "4-0", "away": "Dortmund", "pm": "92-65" },
-        { "home": "PSG", "score": "3-1", "away": "Aston Villa", "pm": "88-76" },
-        { "home": "Aston Villa", "score": "3-2", "away": "PSG", "pm": "84-81" },
-        { "home": "Dortmund", "score": "3-1", "away": "Barcelona", "pm": "87-79" }
+      { "name": "Gameweek-1", "fixtures": [
+        { "home": "TBD", "score": "TBD", "away": "TBD", "pm": "TBD" }
       ]},
-      { "name": "Semi-final", "fixtures": [
-        { "home": "Arsenal", "score": "3-0", "away": "Real Madrid", "pm": "85-72" },
-        { "home": "Bayern München", "score": "1-2", "away": "Inter", "pm": "78-82" },
-        { "home": "Barcelona", "score": "4-0", "away": "Dortmund", "pm": "92-65" },
-        { "home": "PSG", "score": "3-1", "away": "Aston Villa", "pm": "88-76" },
-        { "home": "Aston Villa", "score": "3-2", "away": "PSG", "pm": "84-81" },
-        { "home": "Dortmund", "score": "3-1", "away": "Barcelona", "pm": "87-79" }
+      { "name": "Gameweek-2", "fixtures": [
+        { "home": "TBD", "score": "TBD", "away": "TBD", "pm": "TBD" }
       ]}
     ] },
     { "key": "2", "name": "UEFA Europa League", "teams": [], "stages": [
-      { "name": "Quarter-final", "fixtures": [
-        { "home": "Arsenal", "score": "3-0", "away": "Real Madrid", "pm": "85-72" },
-        { "home": "Bayern München", "score": "1-2", "away": "Inter", "pm": "78-82" },
-        { "home": "Barcelona", "score": "4-0", "away": "Dortmund", "pm": "92-65" },
-        { "home": "PSG", "score": "3-1", "away": "Aston Villa", "pm": "88-76" },
-        { "home": "Aston Villa", "score": "3-2", "away": "PSG", "pm": "84-81" },
-        { "home": "Dortmund", "score": "3-1", "away": "Barcelona", "pm": "87-79" }
+      { "name": "Gameweek-1", "fixtures": [
+        { "home": "TBD", "score": "TBD", "away": "TBD", "pm": "TBD" }
       ]},
-      { "name": "Semi-final", "fixtures": [
-        { "home": "Arsenal", "score": "3-0", "away": "Real Madrid", "pm": "85-72" },
-        { "home": "Bayern München", "score": "1-2", "away": "Inter", "pm": "78-82" },
-        { "home": "Barcelona", "score": "4-0", "away": "Dortmund", "pm": "92-65" },
-        { "home": "PSG", "score": "3-1", "away": "Aston Villa", "pm": "88-76" },
-        { "home": "Aston Villa", "score": "3-2", "away": "PSG", "pm": "84-81" },
-        { "home": "Dortmund", "score": "3-1", "away": "Barcelona", "pm": "87-79" }
-      ]},
-      { "name": "Final", "fixtures": [
-        { "home": "Arsenal", "score": "3-0", "away": "Real Madrid", "pm": "85-72" },
-        { "home": "Bayern München", "score": "1-2", "away": "Inter", "pm": "78-82" },
-        { "home": "Barcelona", "score": "4-0", "away": "Dortmund", "pm": "92-65" },
-        { "home": "PSG", "score": "3-1", "away": "Aston Villa", "pm": "88-76" },
-        { "home": "Aston Villa", "score": "3-2", "away": "PSG", "pm": "84-81" },
-        { "home": "Dortmund", "score": "3-1", "away": "Barcelona", "pm": "87-79" }
+      { "name": "Gameweek-2", "fixtures": [
+        { "home": "TBD", "score": "TBD", "away": "TBD", "pm": "TBD" }
       ]}
     ] },
-    { "key": "3", "name": "UEFA Super Cup", "teams": [], "stages": [
+    { "key": "2", "name": "UEFA Super Cup", "teams": [], "stages": [
       { "name": "Final", "fixtures": [
         { "home": "PSG", "score": "2-2", "away": "Tottenham", "pm": "2.07-1.82" }
       ]}
@@ -52,24 +24,24 @@
   ],
   "england": [
     { "key": "1", "name": "Premier League", "teams": [], "stages": [
-      { "name": "Quarter-final", "fixtures": [
+      { "name": "Gameweek-1", "fixtures": [
         { "home": "Arsenal", "score": "3-0", "away": "Real Madrid", "pm": "85-72" },
         { "home": "Bayern München", "score": "1-2", "away": "Inter", "pm": "78-82" },
         { "home": "Barcelona", "score": "4-0", "away": "Dortmund", "pm": "92-65" },
         { "home": "PSG", "score": "3-1", "away": "Aston Villa", "pm": "88-76" },
         { "home": "Aston Villa", "score": "3-2", "away": "PSG", "pm": "84-81" },
-        { "home": "Dortmund", "score": "3-1", "away": "Barcelona", "pm": "87-79" }
-      ]},
-      { "name": "Semi-final", "fixtures": [
-        { "home": "Arsenal", "score": "3-0", "away": "Real Madrid", "pm": "85-72" },
-        { "home": "Bayern München", "score": "1-2", "away": "Inter", "pm": "78-82" },
+        { "home": "Dortmund", "score": "3-1", "away": "Barcelona", "pm": "87-79" },
         { "home": "Barcelona", "score": "4-0", "away": "Dortmund", "pm": "92-65" },
         { "home": "PSG", "score": "3-1", "away": "Aston Villa", "pm": "88-76" },
         { "home": "Aston Villa", "score": "3-2", "away": "PSG", "pm": "84-81" },
         { "home": "Dortmund", "score": "3-1", "away": "Barcelona", "pm": "87-79" }
       ]},
-      { "name": "Final", "fixtures": [
+      { "name": "Gameweek-2", "fixtures": [
         { "home": "Arsenal", "score": "3-0", "away": "Real Madrid", "pm": "85-72" },
+        { "home": "Bayern München", "score": "1-2", "away": "Inter", "pm": "78-82" },
+        { "home": "Barcelona", "score": "4-0", "away": "Dortmund", "pm": "92-65" },
+        { "home": "PSG", "score": "3-1", "away": "Aston Villa", "pm": "88-76" },
+        { "home": "Aston Villa", "score": "3-2", "away": "PSG", "pm": "84-81" },
         { "home": "Bayern München", "score": "1-2", "away": "Inter", "pm": "78-82" },
         { "home": "Barcelona", "score": "4-0", "away": "Dortmund", "pm": "92-65" },
         { "home": "PSG", "score": "3-1", "away": "Aston Villa", "pm": "88-76" },
@@ -78,104 +50,41 @@
       ]}
     ] },
     { "key": "2", "name": "FA Cup", "teams": [], "stages": [
-      { "name": "Quarter-final", "fixtures": [
-        { "home": "Arsenal", "score": "3-0", "away": "Real Madrid", "pm": "85-72" },
-        { "home": "Bayern München", "score": "1-2", "away": "Inter", "pm": "78-82" },
-        { "home": "Barcelona", "score": "4-0", "away": "Dortmund", "pm": "92-65" },
-        { "home": "PSG", "score": "3-1", "away": "Aston Villa", "pm": "88-76" },
-        { "home": "Aston Villa", "score": "3-2", "away": "PSG", "pm": "84-81" },
-        { "home": "Dortmund", "score": "3-1", "away": "Barcelona", "pm": "87-79" }
-      ]},
-      { "name": "Semi-final", "fixtures": [
-        { "home": "Arsenal", "score": "3-0", "away": "Real Madrid", "pm": "85-72" },
-        { "home": "Bayern München", "score": "1-2", "away": "Inter", "pm": "78-82" },
-        { "home": "Barcelona", "score": "4-0", "away": "Dortmund", "pm": "92-65" },
-        { "home": "PSG", "score": "3-1", "away": "Aston Villa", "pm": "88-76" },
-        { "home": "Aston Villa", "score": "3-2", "away": "PSG", "pm": "84-81" },
-        { "home": "Dortmund", "score": "3-1", "away": "Barcelona", "pm": "87-79" }
-      ]},
-      { "name": "Final", "fixtures": [
-        { "home": "Arsenal", "score": "3-0", "away": "Real Madrid", "pm": "85-72" },
-        { "home": "Bayern München", "score": "1-2", "away": "Inter", "pm": "78-82" },
-        { "home": "Barcelona", "score": "4-0", "away": "Dortmund", "pm": "92-65" },
-        { "home": "PSG", "score": "3-1", "away": "Aston Villa", "pm": "88-76" },
-        { "home": "Aston Villa", "score": "3-2", "away": "PSG", "pm": "84-81" },
-        { "home": "Dortmund", "score": "3-1", "away": "Barcelona", "pm": "87-79" }
+      { "name": "Round of 16", "fixtures": [
+        { "home": "TBD", "score": "TBD", "away": "TBD", "pm": "TBD" }
       ]}
     ] },
     { "key": "3", "name": "Carabao Cup", "teams": [], "stages": [
-      { "name": "Quarter-final", "fixtures": [
-        { "home": "Arsenal", "score": "3-0", "away": "Real Madrid", "pm": "85-72" },
-        { "home": "Bayern München", "score": "1-2", "away": "Inter", "pm": "78-82" },
-        { "home": "Barcelona", "score": "4-0", "away": "Dortmund", "pm": "92-65" },
-        { "home": "PSG", "score": "3-1", "away": "Aston Villa", "pm": "88-76" },
-        { "home": "Aston Villa", "score": "3-2", "away": "PSG", "pm": "84-81" },
-        { "home": "Dortmund", "score": "3-1", "away": "Barcelona", "pm": "87-79" }
-      ]},
-      { "name": "Semi-final", "fixtures": [
-        { "home": "Arsenal", "score": "3-0", "away": "Real Madrid", "pm": "85-72" },
-        { "home": "Bayern München", "score": "1-2", "away": "Inter", "pm": "78-82" },
-        { "home": "Barcelona", "score": "4-0", "away": "Dortmund", "pm": "92-65" },
-        { "home": "PSG", "score": "3-1", "away": "Aston Villa", "pm": "88-76" },
-        { "home": "Aston Villa", "score": "3-2", "away": "PSG", "pm": "84-81" },
-        { "home": "Dortmund", "score": "3-1", "away": "Barcelona", "pm": "87-79" }
-      ]},
-      { "name": "Final", "fixtures": [
-        { "home": "Arsenal", "score": "3-0", "away": "Real Madrid", "pm": "85-72" },
-        { "home": "Bayern München", "score": "1-2", "away": "Inter", "pm": "78-82" },
-        { "home": "Barcelona", "score": "4-0", "away": "Dortmund", "pm": "92-65" },
-        { "home": "PSG", "score": "3-1", "away": "Aston Villa", "pm": "88-76" },
-        { "home": "Aston Villa", "score": "3-2", "away": "PSG", "pm": "84-81" },
-        { "home": "Dortmund", "score": "3-1", "away": "Barcelona", "pm": "87-79" }
+      { "name": "Round of 16", "fixtures": [
+        { "home": "TBD", "score": "TBD", "away": "TBD", "pm": "TBD" }
       ]}
     ] },
     { "key": "4", "name": "Community Shield", "teams": [], "stages": [
-      { "name": "Quarter-final", "fixtures": [
-        { "home": "Arsenal", "score": "3-0", "away": "Real Madrid", "pm": "85-72" },
-        { "home": "Bayern München", "score": "1-2", "away": "Inter", "pm": "78-82" },
-        { "home": "Barcelona", "score": "4-0", "away": "Dortmund", "pm": "92-65" },
-        { "home": "PSG", "score": "3-1", "away": "Aston Villa", "pm": "88-76" },
-        { "home": "Aston Villa", "score": "3-2", "away": "PSG", "pm": "84-81" },
-        { "home": "Dortmund", "score": "3-1", "away": "Barcelona", "pm": "87-79" }
-      ]},
-      { "name": "Semi-final", "fixtures": [
-        { "home": "Arsenal", "score": "3-0", "away": "Real Madrid", "pm": "85-72" },
-        { "home": "Bayern München", "score": "1-2", "away": "Inter", "pm": "78-82" },
-        { "home": "Barcelona", "score": "4-0", "away": "Dortmund", "pm": "92-65" },
-        { "home": "PSG", "score": "3-1", "away": "Aston Villa", "pm": "88-76" },
-        { "home": "Aston Villa", "score": "3-2", "away": "PSG", "pm": "84-81" },
-        { "home": "Dortmund", "score": "3-1", "away": "Barcelona", "pm": "87-79" }
-      ]},
       { "name": "Final", "fixtures": [
-        { "home": "Arsenal", "score": "3-0", "away": "Real Madrid", "pm": "85-72" },
-        { "home": "Bayern München", "score": "1-2", "away": "Inter", "pm": "78-82" },
-        { "home": "Barcelona", "score": "4-0", "away": "Dortmund", "pm": "92-65" },
-        { "home": "PSG", "score": "3-1", "away": "Aston Villa", "pm": "88-76" },
-        { "home": "Aston Villa", "score": "3-2", "away": "PSG", "pm": "84-81" },
-        { "home": "Dortmund", "score": "3-1", "away": "Barcelona", "pm": "87-79" }
+        { "home": "Crystal Palace", "score": "2-2", "away": "Liverpool", "pm": "2.12-2.11" }
       ]}
     ] }
   ],
   "spain": [
     { "key": "1", "name": "La Liga", "teams": [], "stages": [
-      { "name": "Quarter-final", "fixtures": [
+      { "name": "Gameweek-1", "fixtures": [
         { "home": "Arsenal", "score": "3-0", "away": "Real Madrid", "pm": "85-72" },
         { "home": "Bayern München", "score": "1-2", "away": "Inter", "pm": "78-82" },
         { "home": "Barcelona", "score": "4-0", "away": "Dortmund", "pm": "92-65" },
         { "home": "PSG", "score": "3-1", "away": "Aston Villa", "pm": "88-76" },
         { "home": "Aston Villa", "score": "3-2", "away": "PSG", "pm": "84-81" },
-        { "home": "Dortmund", "score": "3-1", "away": "Barcelona", "pm": "87-79" }
-      ]},
-      { "name": "Semi-final", "fixtures": [
-        { "home": "Arsenal", "score": "3-0", "away": "Real Madrid", "pm": "85-72" },
-        { "home": "Bayern München", "score": "1-2", "away": "Inter", "pm": "78-82" },
+        { "home": "Dortmund", "score": "3-1", "away": "Barcelona", "pm": "87-79" },
         { "home": "Barcelona", "score": "4-0", "away": "Dortmund", "pm": "92-65" },
         { "home": "PSG", "score": "3-1", "away": "Aston Villa", "pm": "88-76" },
         { "home": "Aston Villa", "score": "3-2", "away": "PSG", "pm": "84-81" },
         { "home": "Dortmund", "score": "3-1", "away": "Barcelona", "pm": "87-79" }
       ]},
-      { "name": "Final", "fixtures": [
+      { "name": "Gameweek-2", "fixtures": [
         { "home": "Arsenal", "score": "3-0", "away": "Real Madrid", "pm": "85-72" },
+        { "home": "Bayern München", "score": "1-2", "away": "Inter", "pm": "78-82" },
+        { "home": "Barcelona", "score": "4-0", "away": "Dortmund", "pm": "92-65" },
+        { "home": "PSG", "score": "3-1", "away": "Aston Villa", "pm": "88-76" },
+        { "home": "Aston Villa", "score": "3-2", "away": "PSG", "pm": "84-81" },
         { "home": "Bayern München", "score": "1-2", "away": "Inter", "pm": "78-82" },
         { "home": "Barcelona", "score": "4-0", "away": "Dortmund", "pm": "92-65" },
         { "home": "PSG", "score": "3-1", "away": "Aston Villa", "pm": "88-76" },
@@ -184,78 +93,36 @@
       ]}
     ] },
     { "key": "2", "name": "Copa del Rey", "teams": [], "stages": [
-      { "name": "Quarter-final", "fixtures": [
-        { "home": "Arsenal", "score": "3-0", "away": "Real Madrid", "pm": "85-72" },
-        { "home": "Bayern München", "score": "1-2", "away": "Inter", "pm": "78-82" },
-        { "home": "Barcelona", "score": "4-0", "away": "Dortmund", "pm": "92-65" },
-        { "home": "PSG", "score": "3-1", "away": "Aston Villa", "pm": "88-76" },
-        { "home": "Aston Villa", "score": "3-2", "away": "PSG", "pm": "84-81" },
-        { "home": "Dortmund", "score": "3-1", "away": "Barcelona", "pm": "87-79" }
-      ]},
-      { "name": "Semi-final", "fixtures": [
-        { "home": "Arsenal", "score": "3-0", "away": "Real Madrid", "pm": "85-72" },
-        { "home": "Bayern München", "score": "1-2", "away": "Inter", "pm": "78-82" },
-        { "home": "Barcelona", "score": "4-0", "away": "Dortmund", "pm": "92-65" },
-        { "home": "PSG", "score": "3-1", "away": "Aston Villa", "pm": "88-76" },
-        { "home": "Aston Villa", "score": "3-2", "away": "PSG", "pm": "84-81" },
-        { "home": "Dortmund", "score": "3-1", "away": "Barcelona", "pm": "87-79" }
-      ]},
-      { "name": "Final", "fixtures": [
-        { "home": "Arsenal", "score": "3-0", "away": "Real Madrid", "pm": "85-72" },
-        { "home": "Bayern München", "score": "1-2", "away": "Inter", "pm": "78-82" },
-        { "home": "Barcelona", "score": "4-0", "away": "Dortmund", "pm": "92-65" },
-        { "home": "PSG", "score": "3-1", "away": "Aston Villa", "pm": "88-76" },
-        { "home": "Aston Villa", "score": "3-2", "away": "PSG", "pm": "84-81" },
-        { "home": "Dortmund", "score": "3-1", "away": "Barcelona", "pm": "87-79" }
+      { "name": "Round of 16", "fixtures": [
+        { "home": "TBD", "score": "TBD", "away": "TBD", "pm": "TBD" }
       ]}
     ] },
     { "key": "3", "name": "Spanish Supercup", "teams": [], "stages": [
-      { "name": "Quarter-final", "fixtures": [
-        { "home": "Arsenal", "score": "3-0", "away": "Real Madrid", "pm": "85-72" },
-        { "home": "Bayern München", "score": "1-2", "away": "Inter", "pm": "78-82" },
-        { "home": "Barcelona", "score": "4-0", "away": "Dortmund", "pm": "92-65" },
-        { "home": "PSG", "score": "3-1", "away": "Aston Villa", "pm": "88-76" },
-        { "home": "Aston Villa", "score": "3-2", "away": "PSG", "pm": "84-81" },
-        { "home": "Dortmund", "score": "3-1", "away": "Barcelona", "pm": "87-79" }
-      ]},
       { "name": "Semi-final", "fixtures": [
-        { "home": "Arsenal", "score": "3-0", "away": "Real Madrid", "pm": "85-72" },
-        { "home": "Bayern München", "score": "1-2", "away": "Inter", "pm": "78-82" },
-        { "home": "Barcelona", "score": "4-0", "away": "Dortmund", "pm": "92-65" },
-        { "home": "PSG", "score": "3-1", "away": "Aston Villa", "pm": "88-76" },
-        { "home": "Aston Villa", "score": "3-2", "away": "PSG", "pm": "84-81" },
-        { "home": "Dortmund", "score": "3-1", "away": "Barcelona", "pm": "87-79" }
-      ]},
-      { "name": "Final", "fixtures": [
-        { "home": "Arsenal", "score": "3-0", "away": "Real Madrid", "pm": "85-72" },
-        { "home": "Bayern München", "score": "1-2", "away": "Inter", "pm": "78-82" },
-        { "home": "Barcelona", "score": "4-0", "away": "Dortmund", "pm": "92-65" },
-        { "home": "PSG", "score": "3-1", "away": "Aston Villa", "pm": "88-76" },
-        { "home": "Aston Villa", "score": "3-2", "away": "PSG", "pm": "84-81" },
-        { "home": "Dortmund", "score": "3-1", "away": "Barcelona", "pm": "87-79" }
+        { "home": "TBD", "score": "TBD", "away": "TBD", "pm": "TBD" }
       ]}
     ] }
   ],
   "france": [
     { "key": "1", "name": "Ligue 1", "teams": [], "stages": [
-      { "name": "Quarter-final", "fixtures": [
+      { "name": "Gameweek-1", "fixtures": [
         { "home": "Arsenal", "score": "3-0", "away": "Real Madrid", "pm": "85-72" },
         { "home": "Bayern München", "score": "1-2", "away": "Inter", "pm": "78-82" },
         { "home": "Barcelona", "score": "4-0", "away": "Dortmund", "pm": "92-65" },
         { "home": "PSG", "score": "3-1", "away": "Aston Villa", "pm": "88-76" },
         { "home": "Aston Villa", "score": "3-2", "away": "PSG", "pm": "84-81" },
-        { "home": "Dortmund", "score": "3-1", "away": "Barcelona", "pm": "87-79" }
-      ]},
-      { "name": "Semi-final", "fixtures": [
-        { "home": "Arsenal", "score": "3-0", "away": "Real Madrid", "pm": "85-72" },
-        { "home": "Bayern München", "score": "1-2", "away": "Inter", "pm": "78-82" },
+        { "home": "Dortmund", "score": "3-1", "away": "Barcelona", "pm": "87-79" },
         { "home": "Barcelona", "score": "4-0", "away": "Dortmund", "pm": "92-65" },
         { "home": "PSG", "score": "3-1", "away": "Aston Villa", "pm": "88-76" },
         { "home": "Aston Villa", "score": "3-2", "away": "PSG", "pm": "84-81" },
         { "home": "Dortmund", "score": "3-1", "away": "Barcelona", "pm": "87-79" }
       ]},
-      { "name": "Final", "fixtures": [
+      { "name": "Gameweek-2", "fixtures": [
         { "home": "Arsenal", "score": "3-0", "away": "Real Madrid", "pm": "85-72" },
+        { "home": "Bayern München", "score": "1-2", "away": "Inter", "pm": "78-82" },
+        { "home": "Barcelona", "score": "4-0", "away": "Dortmund", "pm": "92-65" },
+        { "home": "PSG", "score": "3-1", "away": "Aston Villa", "pm": "88-76" },
+        { "home": "Aston Villa", "score": "3-2", "away": "PSG", "pm": "84-81" },
         { "home": "Bayern München", "score": "1-2", "away": "Inter", "pm": "78-82" },
         { "home": "Barcelona", "score": "4-0", "away": "Dortmund", "pm": "92-65" },
         { "home": "PSG", "score": "3-1", "away": "Aston Villa", "pm": "88-76" },
@@ -264,30 +131,36 @@
       ]}
     ] },
     { "key": "2", "name": "Coupe de France", "teams": [], "stages": [
-      { "name": "Quarter-final", "fixtures": [
-        { "home": "Arsenal", "score": "3-0", "away": "Real Madrid", "pm": "85-72" },
-        { "home": "Bayern München", "score": "1-2", "away": "Inter", "pm": "78-82" },
-        { "home": "Barcelona", "score": "4-0", "away": "Dortmund", "pm": "92-65" },
-        { "home": "PSG", "score": "3-1", "away": "Aston Villa", "pm": "88-76" },
-        { "home": "Aston Villa", "score": "3-2", "away": "PSG", "pm": "84-81" },
-        { "home": "Dortmund", "score": "3-1", "away": "Barcelona", "pm": "87-79" }
+      { "name": "Round of 16", "fixtures": [
+        { "home": "TBD", "score": "TBD", "away": "TBD", "pm": "TBD" }
       ]}
     ] },
     { "key": "3", "name": "French Supercup", "teams": [], "stages": [
-      { "name": "Quarter-final", "fixtures": [
-        { "home": "Arsenal", "score": "3-0", "away": "Real Madrid", "pm": "85-72" },
-        { "home": "Bayern München", "score": "1-2", "away": "Inter", "pm": "78-82" },
-        { "home": "Barcelona", "score": "4-0", "away": "Dortmund", "pm": "92-65" },
-        { "home": "PSG", "score": "3-1", "away": "Aston Villa", "pm": "88-76" },
-        { "home": "Aston Villa", "score": "3-2", "away": "PSG", "pm": "84-81" },
-        { "home": "Dortmund", "score": "3-1", "away": "Barcelona", "pm": "87-79" }
+      { "name": "Final", "fixtures": [
+        { "home": "PSG", "score": "TBD", "away": "Marseille", "pm": "TBD" }
       ]}
     ] }
   ],
   "italy": [
     { "key": "1", "name": "Serie A", "teams": [], "stages": [
-      { "name": "Quarter-final", "fixtures": [
+      { "name": "Gameweek-1", "fixtures": [
         { "home": "Arsenal", "score": "3-0", "away": "Real Madrid", "pm": "85-72" },
+        { "home": "Bayern München", "score": "1-2", "away": "Inter", "pm": "78-82" },
+        { "home": "Barcelona", "score": "4-0", "away": "Dortmund", "pm": "92-65" },
+        { "home": "PSG", "score": "3-1", "away": "Aston Villa", "pm": "88-76" },
+        { "home": "Aston Villa", "score": "3-2", "away": "PSG", "pm": "84-81" },
+        { "home": "Dortmund", "score": "3-1", "away": "Barcelona", "pm": "87-79" },
+        { "home": "Barcelona", "score": "4-0", "away": "Dortmund", "pm": "92-65" },
+        { "home": "PSG", "score": "3-1", "away": "Aston Villa", "pm": "88-76" },
+        { "home": "Aston Villa", "score": "3-2", "away": "PSG", "pm": "84-81" },
+        { "home": "Dortmund", "score": "3-1", "away": "Barcelona", "pm": "87-79" }
+      ]},
+      { "name": "Gameweek-2", "fixtures": [
+        { "home": "Arsenal", "score": "3-0", "away": "Real Madrid", "pm": "85-72" },
+        { "home": "Bayern München", "score": "1-2", "away": "Inter", "pm": "78-82" },
+        { "home": "Barcelona", "score": "4-0", "away": "Dortmund", "pm": "92-65" },
+        { "home": "PSG", "score": "3-1", "away": "Aston Villa", "pm": "88-76" },
+        { "home": "Aston Villa", "score": "3-2", "away": "PSG", "pm": "84-81" },
         { "home": "Bayern München", "score": "1-2", "away": "Inter", "pm": "78-82" },
         { "home": "Barcelona", "score": "4-0", "away": "Dortmund", "pm": "92-65" },
         { "home": "PSG", "score": "3-1", "away": "Aston Villa", "pm": "88-76" },
@@ -296,30 +169,36 @@
       ]}
     ] },
     { "key": "2", "name": "Coppa Italia", "teams": [], "stages": [
-      { "name": "Quarter-final", "fixtures": [
-        { "home": "Arsenal", "score": "3-0", "away": "Real Madrid", "pm": "85-72" },
-        { "home": "Bayern München", "score": "1-2", "away": "Inter", "pm": "78-82" },
-        { "home": "Barcelona", "score": "4-0", "away": "Dortmund", "pm": "92-65" },
-        { "home": "PSG", "score": "3-1", "away": "Aston Villa", "pm": "88-76" },
-        { "home": "Aston Villa", "score": "3-2", "away": "PSG", "pm": "84-81" },
-        { "home": "Dortmund", "score": "3-1", "away": "Barcelona", "pm": "87-79" }
+      { "name": "Round of 16", "fixtures": [
+        { "home": "TBD", "score": "TBD", "away": "TBD", "pm": "TBD" }
       ]}
     ] },
     { "key": "3", "name": "Italian Supercup", "teams": [], "stages": [
-      { "name": "Quarter-final", "fixtures": [
-        { "home": "Arsenal", "score": "3-0", "away": "Real Madrid", "pm": "85-72" },
-        { "home": "Bayern München", "score": "1-2", "away": "Inter", "pm": "78-82" },
-        { "home": "Barcelona", "score": "4-0", "away": "Dortmund", "pm": "92-65" },
-        { "home": "PSG", "score": "3-1", "away": "Aston Villa", "pm": "88-76" },
-        { "home": "Aston Villa", "score": "3-2", "away": "PSG", "pm": "84-81" },
-        { "home": "Dortmund", "score": "3-1", "away": "Barcelona", "pm": "87-79" }
+      { "name": "Round of 16", "fixtures": [
+        { "home": "TBD", "score": "TBD", "away": "TBD", "pm": "TBD" }
       ]}
     ] }
   ],
   "germany": [
     { "key": "1", "name": "Bundesliga", "teams": [], "stages": [
-      { "name": "Quarter-final", "fixtures": [
+      { "name": "Gameweek-1", "fixtures": [
         { "home": "Arsenal", "score": "3-0", "away": "Real Madrid", "pm": "85-72" },
+        { "home": "Bayern München", "score": "1-2", "away": "Inter", "pm": "78-82" },
+        { "home": "Barcelona", "score": "4-0", "away": "Dortmund", "pm": "92-65" },
+        { "home": "PSG", "score": "3-1", "away": "Aston Villa", "pm": "88-76" },
+        { "home": "Aston Villa", "score": "3-2", "away": "PSG", "pm": "84-81" },
+        { "home": "Dortmund", "score": "3-1", "away": "Barcelona", "pm": "87-79" },
+        { "home": "Barcelona", "score": "4-0", "away": "Dortmund", "pm": "92-65" },
+        { "home": "PSG", "score": "3-1", "away": "Aston Villa", "pm": "88-76" },
+        { "home": "Aston Villa", "score": "3-2", "away": "PSG", "pm": "84-81" },
+        { "home": "Dortmund", "score": "3-1", "away": "Barcelona", "pm": "87-79" }
+      ]},
+      { "name": "Gameweek-2", "fixtures": [
+        { "home": "Arsenal", "score": "3-0", "away": "Real Madrid", "pm": "85-72" },
+        { "home": "Bayern München", "score": "1-2", "away": "Inter", "pm": "78-82" },
+        { "home": "Barcelona", "score": "4-0", "away": "Dortmund", "pm": "92-65" },
+        { "home": "PSG", "score": "3-1", "away": "Aston Villa", "pm": "88-76" },
+        { "home": "Aston Villa", "score": "3-2", "away": "PSG", "pm": "84-81" },
         { "home": "Bayern München", "score": "1-2", "away": "Inter", "pm": "78-82" },
         { "home": "Barcelona", "score": "4-0", "away": "Dortmund", "pm": "92-65" },
         { "home": "PSG", "score": "3-1", "away": "Aston Villa", "pm": "88-76" },
@@ -328,25 +207,15 @@
       ]}
     ] },
     { "key": "2", "name": "DFB Pokal", "teams": [], "stages": [
-      { "name": "Quarter-final", "fixtures": [
-        { "home": "Arsenal", "score": "3-0", "away": "Real Madrid", "pm": "85-72" },
-        { "home": "Bayern München", "score": "1-2", "away": "Inter", "pm": "78-82" },
-        { "home": "Barcelona", "score": "4-0", "away": "Dortmund", "pm": "92-65" },
-        { "home": "PSG", "score": "3-1", "away": "Aston Villa", "pm": "88-76" },
-        { "home": "Aston Villa", "score": "3-2", "away": "PSG", "pm": "84-81" },
-        { "home": "Dortmund", "score": "3-1", "away": "Barcelona", "pm": "87-79" }
+      { "name": "Round of 16", "fixtures": [
+        { "home": "TBD", "score": "TBD", "away": "TBD", "pm": "TBD" }
       ]}
     ] },
     { "key": "3", "name": "German Supercup", "teams": [], "stages": [
-      { "name": "Quarter-final", "fixtures": [
-        { "home": "Arsenal", "score": "3-0", "away": "Real Madrid", "pm": "85-72" },
-        { "home": "Bayern München", "score": "1-2", "away": "Inter", "pm": "78-82" },
-        { "home": "Barcelona", "score": "4-0", "away": "Dortmund", "pm": "92-65" },
-        { "home": "PSG", "score": "3-1", "away": "Aston Villa", "pm": "88-76" },
-        { "home": "Aston Villa", "score": "3-2", "away": "PSG", "pm": "84-81" },
-        { "home": "Dortmund", "score": "3-1", "away": "Barcelona", "pm": "87-79" }
+      { "name": "Final", "fixtures": [
+        { "home": "VfB Stuttgart", "score": "1-2", "away": "Bayern Munich", "pm": "2.06-2.44" }
       ]}
-    ] }    
+    ] }
   ]
 }
 
