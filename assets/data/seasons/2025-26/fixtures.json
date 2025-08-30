@@ -25,28 +25,28 @@
   "england": [
     { "key": "1", "name": "Premier League", "teams": [], "stages": [
       { "name": "Gameweek-1", "fixtures": [
-        { "home": "Arsenal", "score": "3-0", "away": "Real Madrid", "pm": "85-72" },
-        { "home": "Bayern München", "score": "1-2", "away": "Inter", "pm": "78-82" },
-        { "home": "Barcelona", "score": "4-0", "away": "Dortmund", "pm": "92-65" },
-        { "home": "PSG", "score": "3-1", "away": "Aston Villa", "pm": "88-76" },
-        { "home": "Aston Villa", "score": "3-2", "away": "PSG", "pm": "84-81" },
-        { "home": "Dortmund", "score": "3-1", "away": "Barcelona", "pm": "87-79" },
-        { "home": "Barcelona", "score": "4-0", "away": "Dortmund", "pm": "92-65" },
-        { "home": "PSG", "score": "3-1", "away": "Aston Villa", "pm": "88-76" },
-        { "home": "Aston Villa", "score": "3-2", "away": "PSG", "pm": "84-81" },
-        { "home": "Dortmund", "score": "3-1", "away": "Barcelona", "pm": "87-79" }
+        { "home": "Liverpool", "score": "4-2", "away": "Bournemouth", "pm": "2.24-1.74" },
+        { "home": "Aston Villa", "score": "0-0", "away": "Newcastle", "pm": "2.05-2.23" },
+        { "home": "Brighton", "score": "1-1", "away": "Fulham", "pm": "2.21-2.02" },
+        { "home": "Sunderland", "score": "3-0", "away": "West Ham", "pm": "2.36-1.64" },
+        { "home": "Tottenham", "score": "3-0", "away": "Burnley", "pm": "2.59-1.50" },
+        { "home": "Wolves", "score": "0-4", "away": "Manchester City", "pm": "1.53-2.73" },
+        { "home": "Chelsea", "score": "0-0", "away": "Crystal Palace", "pm": "2.34-2.06" },
+        { "home": "Nottingham Forest", "score": "3-1", "away": "Brentford", "pm": "2.37-1.73" },
+        { "home": "Manchester United", "score": "0-1", "away": "Arsenal", "pm": "1.92-2.15" },
+        { "home": "Leeds United", "score": "1-0", "away": "Everton", "pm": "2.43-1.93" }
       ]},
       { "name": "Gameweek-2", "fixtures": [
-        { "home": "Arsenal", "score": "3-0", "away": "Real Madrid", "pm": "85-72" },
-        { "home": "Bayern München", "score": "1-2", "away": "Inter", "pm": "78-82" },
-        { "home": "Barcelona", "score": "4-0", "away": "Dortmund", "pm": "92-65" },
-        { "home": "PSG", "score": "3-1", "away": "Aston Villa", "pm": "88-76" },
-        { "home": "Aston Villa", "score": "3-2", "away": "PSG", "pm": "84-81" },
-        { "home": "Bayern München", "score": "1-2", "away": "Inter", "pm": "78-82" },
-        { "home": "Barcelona", "score": "4-0", "away": "Dortmund", "pm": "92-65" },
-        { "home": "PSG", "score": "3-1", "away": "Aston Villa", "pm": "88-76" },
-        { "home": "Aston Villa", "score": "3-2", "away": "PSG", "pm": "84-81" },
-        { "home": "Dortmund", "score": "3-1", "away": "Barcelona", "pm": "87-79" }
+        { "home": "West Ham", "score": "1-5", "away": "Chelsea", "pm": "1.61-2.64" },
+        { "home": "Manchester City", "score": "0-2", "away": "Tottenham", "pm": "1.94-2.37" },
+        { "home": "Bournemouth", "score": "1-0", "away": "Wolves", "pm": "2.37-1.78" },
+        { "home": "Brentford", "score": "1-0", "away": "Aston Villa", "pm": "2.18-2.05" },
+        { "home": "Burnley", "score": "2-0", "away": "Sunderland", "pm": "2.35-1.91" },
+        { "home": "Arsenal", "score": "5-2", "away": "Leeds United", "pm": "2.80-1.38" },
+        { "home": "Crystal Palace", "score": "1-1", "away": "Nottingham Forest", "pm": "2.06-2.13" },
+        { "home": "Everton", "score": "2-0", "away": "Brighton", "pm": "2.32-2.03" },
+        { "home": "Fulham", "score": "1-1", "away": "Manchester United", "pm": "2.23-2.16" },
+        { "home": "Newcastle", "score": "2-3", "away": "Liverpool", "pm": "2.17-1.99" }
       ]}
     ] },
     { "key": "2", "name": "FA Cup", "teams": [], "stages": [
