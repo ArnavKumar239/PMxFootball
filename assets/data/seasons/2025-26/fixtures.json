@@ -47,6 +47,18 @@
         { "home": "Everton", "score": "2-0", "away": "Brighton", "pm": "2.32-2.03" },
         { "home": "Fulham", "score": "1-1", "away": "Manchester United", "pm": "2.23-2.16" },
         { "home": "Newcastle", "score": "2-3", "away": "Liverpool", "pm": "2.17-1.99" }
+      ]},
+      { "name": "Gameweek-3", "fixtures": [
+        { "home": "Chelsea", "score": "2-0", "away": "Fulham", "pm": "2.57-1.79" },
+        { "home": "Manchester United", "score": "3-2", "away": "Burnley", "pm": "2.29-1.76" },
+        { "home": "Sunderland", "score": "2-1", "away": "Brentford", "pm": "2.20-1.91" },
+        { "home": "Tottenham", "score": "0-1", "away": "Bournemouth", "pm": "1.91-2.23" },
+        { "home": "Wolves", "score": "2-3", "away": "Everton", "pm": "1.86-2.08" },
+        { "home": "Leeds United", "score": "0-0", "away": "Newcastle", "pm": "2.12-2.02" },
+        { "home": "Brighton", "score": "2-1", "away": "Manchester City", "pm": "2.22-2.10" },
+        { "home": "Nottingham Forest", "score": "0-3", "away": "West Ham", "pm": "1.74-2.59" },
+        { "home": "Liverpool", "score": "1-0", "away": "Arsenal", "pm": "2.13-1.90" },
+        { "home": "Aston Villa", "score": "0-3", "away": "Crystal Palace", "pm": "1.83-2.64" }
       ]}
     ] },
     { "key": "2", "name": "FA Cup", "teams": [], "stages": [
@@ -90,6 +102,21 @@
         { "home": "Real Oviedo", "score": "0-3", "away": "Real Madrid", "pm": "1.63-2.74" },
         { "home": "Athletic Club", "score": "1-0", "away": "Rayo Vallecano", "pm": "2.25-1.98" },
         { "home": "Sevilla", "score": "1-2", "away": "Getafe", "pm": "1.85-1.94" }
+      ]},
+      { "name": "Gameweek-6", "fixtures": [
+        { "home": "Celta Vigo", "score": "1-1", "away": "Real Betis", "pm": "2.09-2.13" }
+      ]},
+      { "name": "Gameweek-3", "fixtures": [
+        { "home": "Elche", "score": "2-0", "away": "Levante", "pm": "2.40-1.77" },
+        { "home": "Valencia", "score": "3-0", "away": "Getafe", "pm": "2.47-1.66" },
+        { "home": "Deportivo Alaves", "score": "1-1", "away": "Atletico Madrid", "pm": "1.98-2.06" },
+        { "home": "Real Oviedo", "score": "1-0", "away": "Real Sociedad", "pm": "2.09-2.11" },
+        { "home": "Girona", "score": "0-2", "away": "Sevilla", "pm": "2.00-2.35" },
+        { "home": "Real Madrid", "score": "2-1", "away": "Mallorca", "pm": "2.32-1.79" },
+        { "home": "Celta Vigo", "score": "1-1", "away": "Villarreal", "pm": "2.16-2.02" },
+        { "home": "Real Betis", "score": "1-2", "away": "Athletic Club", "pm": "1.82-2.22" },
+        { "home": "Espanyol", "score": "1-0", "away": "Osasuna", "pm": "2.25-2.08" },
+        { "home": "Rayo Vallecano", "score": "1-1", "away": "Barcelona", "pm": "2.17-2.24" }
       ]}
     ] },
     { "key": "2", "name": "Copa del Rey", "teams": [], "stages": [
@@ -119,13 +146,24 @@
       { "name": "Gameweek-2", "fixtures": [
         { "home": "PSG", "score": "1-0", "away": "Angers", "pm": "2.51-1.85" },
         { "home": "Marseille", "score": "5-2", "away": "Paris FC", "pm": "2.51-1.86" },
-        { "home": "Nice", "score": "3-1", "away": "Auxerre", "pm": "2.46-11.90" },
+        { "home": "Nice", "score": "3-1", "away": "Auxerre", "pm": "2.46-1.90" },
         { "home": "Lyon", "score": "3-0", "away": "Metz", "pm": "2.71-1.72" },
         { "home": "Lorient", "score": "4-0", "away": "Rennes", "pm": "2.78-1.58" },
         { "home": "Le Havre", "score": "1-2", "away": "Lens", "pm": "2.08-2.23" },
         { "home": "Strasbourg", "score": "1-0", "away": "Nantes", "pm": "2.42-1.91" },
         { "home": "Toulouse", "score": "2-0", "away": "Brest", "pm": "2.31-1.72" },
         { "home": "Lille", "score": "1-0", "away": "Monaco", "pm": "2.52-2.15" }
+      ]},
+      { "name": "Gameweek-3", "fixtures": [
+        { "home": "Lens", "score": "3-1", "away": "Brest", "pm": "2.58-1.63" },
+        { "home": "Lorient", "score": "1-7", "away": "Lille", "pm": "1.67-2.74" },
+        { "home": "Nantes", "score": "1-0", "away": "Auxerre", "pm": "2.12-2.04" },
+        { "home": "Toulouse", "score": "3-6", "away": "PSG", "pm": "2.84-2.37" },
+        { "home": "Angers", "score": "1-1", "away": "Rennes", "pm": "2.22-2.35" },
+        { "home": "Le Havre", "score": "3-1", "away": "Nice", "pm": "2.37-1.74" },
+        { "home": "Monaco", "score": "3-2", "away": "Strasbourg", "pm": "2.20-1.99" },
+        { "home": "Paris FC", "score": "3-2", "away": "Metz", "pm": "2.37-2.02" },
+        { "home": "Lyon", "score": "1-0", "away": "Marseille", "pm": "2.60-1.99" }
       ]}
     ] },
     { "key": "2", "name": "Coupe de France", "teams": [], "stages": [
